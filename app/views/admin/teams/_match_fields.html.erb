@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="three columns">
+		<%= f.label :result, value: "win" do %>
+			<%= f.radio_button :result, "win" %>
+			Win
+		<% end %>
+	</div>
+	<div class="three columns">
+		<%= f.label :result, value: "tie" do %>
+			<%= f.radio_button :result, "tie" %>
+			Tie
+		<% end %>
+	</div>
+	<div class="three columns">
+		<%= f.label :result, value: "lose" do %>
+			<%= f.radio_button :result, "lose" %>
+			Lose
+		<% end %>
+	</div>
+	<div class="three columns">
+	  <%= f.link_to_remove "remove" %>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<h1>The Market</h1>
+
+<%#= link_to 'New Team', new_team_path, class: 'button' %>
+
+<table class="twelve">
+  <thead>
+    <tr>
+      <th>Pos.</th>
+      <th>Name</th>
+      <th>Available</th>
+      <th>Current Value</th>
+      <th></th>
+    </tr>
+  </thead>
+
+<% @teams.each do |team| %>
+  <tr>
+    <td><%= team.position %></td>
+    <td><%= team.name %></td>
+    <td><%= 70 - team.total_stocks_sold %></td>
+    <td><%= number_to_currency(team.current_value) %></td>
+    <td><%= button_to 'Buy', stocks_path(team_id: team), class: 'button' %></td>
+  </tr>
+<% end %>
+</table>

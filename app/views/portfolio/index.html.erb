@@ -1,0 +1,26 @@
+<h1>Portfolio</h1>
+
+<table class="twelve">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Team</th>
+			<th>Current Stock Value</th>
+			<th>Buy Value</th>
+			<th>Total</th>
+			<th>Total Return</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% current_user.stocks.each do |stock| %>
+		<tr>
+			<td><%= stock.quantity %></td>
+			<td><%= stock.team.name %></td>
+			<td><%= number_to_currency(stock.team.current_value) %></td>
+			<td><%= number_to_currency(stock.price) %></td>
+			<td><%= number_to_currency(stock.current_total_value) %></td>
+			<td><%= number_to_currency(stock.investment_return) %> <small><strong><%= number_to_percentage(stock.percentage_return, precision: 2) %></strong></small></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

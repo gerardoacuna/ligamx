@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="twelve columns">
+    <nav class="top-bar">
+      <ul>
+        <!-- Title Area -->
+        <li class="name">
+          <h1>
+            <a href="#">
+              LigaMX
+            </a>
+          </h1>
+        </li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+
+      <section>
+        <!-- Left Nav Section -->
+        <ul class="left">
+          <li class="divider"></li>
+            <li><%= link_to "Portfolio", root_path %></li>
+          <li class="divider"></li>
+            <li><%= link_to "Market", teams_path %></li>
+          <li class="divider"></li>
+          
+        </ul>
+
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="divider show-for-medium-and-up"></li>
+          <% unless user_signed_in? %>
+            <li><%= link_to "Login", new_user_session_path %></li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li class="has-dropdown">
+              <a href="#"><%= current_user.email %></a>
+              <ul class="dropdown">
+                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    </nav>
+  </div>
+</div>

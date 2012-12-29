@@ -1,0 +1,27 @@
+<%= nested_form_for [:admin, @team], html: { class: "custom" } do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.label :position %><br />
+  <%= f.text_field :position %>
+
+  	<div class="row">
+  		<div class="six columns centered">
+  			<fieldset>
+  				<legend>Match Results</legend>
+ 			<%= f.fields_for :matches %>
+ 			<hr>
+			<%= f.link_to_add "Add match", :matches, class: "button tiny" %>
+			<hr>
+		</fieldset>
+  		</div>
+  		
+  	</div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: 'button' %>
+  </div>
+<% end %>

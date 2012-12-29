@@ -1,4 +1,18 @@
 Ligamx::Application.routes.draw do
+
+  get "stocks/create"
+
+  devise_for :users
+
+  resources :teams, only: [:index, :show]
+  resources :users
+  resources :stocks
+
+  namespace :admin do
+    resources :teams
+  end
+
+  root :to => "portfolio#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -2,7 +2,7 @@ Ligamx::Application.routes.draw do
 
   get "stocks/create"
 
-  devise_for :users
+  devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout' }
 
   resources :teams, only: [:index, :show]
   resources :users

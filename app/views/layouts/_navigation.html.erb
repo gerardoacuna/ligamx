@@ -25,22 +25,19 @@
         </ul>
 
         <!-- Right Nav Section -->
+        <% if user_signed_in? %>
         <ul class="right">
-          <li class="divider show-for-medium-and-up"></li>
-          <% unless user_signed_in? %>
-            <li><%= link_to "Login", new_user_session_path %></li>
-          <% end %>
-          <% if user_signed_in? %>
-            <li class="has-dropdown">
-              <a href="#"><%= current_user.email %></a>
-              <ul class="dropdown">
-                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-                <li class="divider"></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-              </ul>
-            </li>
-          <% end %>
+          <li class="divider show-for-medium-and-up"></li>        
+          <li class="has-dropdown">
+            <a href="#"><%= current_user.email %></a>
+            <ul class="dropdown">
+              <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
         </ul>
+        <% end %>
       </section>
     </nav>
   </div>

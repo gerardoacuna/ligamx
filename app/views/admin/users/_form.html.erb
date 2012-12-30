@@ -1,27 +1,15 @@
-<%= nested_form_for [:admin, @team], html: { class: "custom" } do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
 
-  <%= f.label :position %><br />
-  <%= f.text_field :position %>
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
 
-  	<div class="row">
-  		<div class="six columns centered">
-  			<fieldset>
-  				<legend>Match Results</legend>
- 			<%= f.fields_for :matches %>
- 			<hr>
-			<%= f.link_to_add "Add match", :matches, class: "button tiny" %>
-			<hr>
-		</fieldset>
-  		</div>
-  		
-  	</div>
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
 
-  <div class="actions">
-    <%= f.submit "Save", class: 'button' %>
-  </div>
+  <div><%= f.submit "Save", class: "button" %></div>
+
 <% end %>

@@ -1,4 +1,4 @@
-class CorrectCombineStocks < ActiveRecord::Migration
+class CorrectCombineStockInUser < ActiveRecord::Migration
   def up
   	User.all.each do |user|
   		#count number of each product in the cart
@@ -15,11 +15,11 @@ class CorrectCombineStocks < ActiveRecord::Migration
   end
 
   def down
-  	#split items with quantity > 1 into multiple items
-    Stock.where("quantity>1").each do |stock|
-	    #add individual items
+    #split items with quantity > 1 into multiple items
+    User.where("quantity>1").each do |stock|
+    #add individual items
 	    stock.quantity.items do
-	      Stock.create team_id: stock.team_id, user_id: stock.user_id, quantity: 1
+	      User.create user_id: stock.user_id, team_id: stock.team_id, quantity: 1
 	    end
 	  end
     #remove original item

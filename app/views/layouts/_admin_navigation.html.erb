@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="twelve columns">
+    <nav class="top-bar">
+      <ul>
+        <!-- Title Area -->
+        <li class="name">
+          <h1>
+            <a href="#">
+              Admin
+            </a>
+          </h1>
+        </li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+
+      <section>
+        <!-- Left Nav Section -->
+        <ul class="left">
+          <li class="divider"></li>
+            <li><%= link_to "Users", admin_users_path %></li>
+          <li class="divider"></li>
+            <li><%= link_to "Teams", admin_teams_path %></li>
+          <li class="divider"></li>
+          
+        </ul>
+
+        <!-- Right Nav Section -->
+        <% if user_signed_in? %>
+        <ul class="right">
+          <li class="divider show-for-medium-and-up"></li>        
+          <li class="has-dropdown">
+            <a href="#"><%= current_user.email %></a>
+            <ul class="dropdown">
+              <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+        <% end %>
+      </section>
+    </nav>
+  </div>
+</div>

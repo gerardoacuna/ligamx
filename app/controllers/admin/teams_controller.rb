@@ -1,4 +1,4 @@
-class Admin::TeamsController < ApplicationController
+class Admin::TeamsController < AdminController
 
   def index
     @teams = Team.order("position")

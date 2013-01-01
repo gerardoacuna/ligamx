@@ -1,0 +1,29 @@
+<h1>Transactions</h1>
+<table class="twelve">
+	<thead>
+		<tr>
+			<th>Equipo</th>
+			<th>Precio Compra</th>
+			<th>Precio Venta</th>
+			<th>Gain / Loss</th>
+			<th>Fecha</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% current_user.transactions.each do |transaction| %>
+		<tr>
+			<td><%= transaction.stock.team.name %></td>
+			<td><%= transaction.initial_value %></td>
+			<td><%= transaction.final_value %></td>
+			<td><%= transaction.roi %></td>
+			<td><%= transaction.created_at.to_formatted_s(:long)  %></td>
+		</tr>
+		<% end %>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3"></td>
+			<td><%= current_user.transaction_gains %></td>
+		</tr>
+	</tfoot>
+</table>

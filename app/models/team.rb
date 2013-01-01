@@ -12,12 +12,11 @@ class Team < ActiveRecord::Base
 
   def current_value
   	current_value = 5
-  	slope = 0.588235
   	matches.each do |match|
   		if match.result == "win"
-  			current_value *= position * slope + 4.411765
+  			current_value *= position * 0.588235 + 4.411765
   		elsif match.result == "lose"
-  			current_value *= position * slope - 15.588235
+  			current_value *= position * 0.588235 - 15.588235
   		else
   			current_value
   		end

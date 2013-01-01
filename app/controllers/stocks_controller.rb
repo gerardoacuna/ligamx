@@ -2,7 +2,9 @@ class StocksController < ApplicationController
   def create
   	@user = current_user
 		team = Team.find(params[:team_id])
-    @stock = @user.buy_stock(team.id)
+    @stock = @user.buy_stock(team.id, team.current_value)
+
+    authorize! :buy, @stock
 
     respond_to do |format|
       if @stock.save

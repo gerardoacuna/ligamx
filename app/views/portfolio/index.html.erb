@@ -1,26 +1,47 @@
-<h1>Portfolio</h1>
+<h2>Team Name</h2>
 
-<table class="twelve">
-	<thead>
-		<tr>
-			<th></th>
-			<th>Team</th>
-			<th>Current Stock Value</th>
-			<th>Buy Value</th>
-			<th>Total</th>
-			<th>Total Return</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% current_user.stocks.each do |stock| %>
-		<tr>
-			<td><%= stock.quantity %></td>
-			<td><%= stock.team.name %></td>
-			<td><%= number_to_currency(stock.team.current_value) %></td>
-			<td><%= number_to_currency(stock.price) %></td>
-			<td><%= number_to_currency(stock.current_total_value) %></td>
-			<td><%= number_to_currency(stock.investment_return) %> <small><strong><%= number_to_percentage(stock.percentage_return, precision: 2) %></strong></small></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<ul class="block-grid six-up">
+	<li>
+		<div class="panel">
+			<h5>Rank</h5>
+		</div>
+	</li>
+	<li>
+		<div class="panel">
+			<h4><%= number_to_currency(current_user.available_credit) %></h4>
+			<p><strong>Credit</strong></p>
+		</div>
+	</li>
+	<li>
+		<div class="panel">
+			<h4><%= number_to_currency(current_user.total_credit_spent) %></h4>
+			<p><strong>Spent</strong></p>
+		</div>
+	</li>
+	<li>
+		<div class="panel">
+			<h4><%= number_to_currency(current_user.total_credit_earned) %></h4>
+			<p><strong>Earned</strong></p>
+		</div>
+	</li>
+	<li>
+		<div class="panel">
+			<h4><%= number_to_currency(current_user.total_investment_return) %></h4>
+			<p><strong>ROI</strong></p>
+		</div>
+	</li>
+</ul>
+
+<dl class="tabs">
+  <dd class="active"><a href="#portfolio">Portfolio</a></dd>
+  <dd><a href="#transactions">Transactions</a></dd>
+</dl>
+
+<ul class="tabs-content">
+  <li class="active" id="portfolioTab">
+  	<%= render 'portfolio' %>
+  </li>
+  <li id="transactionsTab">
+  	<%= render 'transactions' %>
+  </li>
+</ul>

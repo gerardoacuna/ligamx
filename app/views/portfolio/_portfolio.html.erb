@@ -1,0 +1,38 @@
+<h1>Portfolio</h1>
+<table class="twelve">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Equipo</th>
+			<th>Valor Compra</th>
+			<th>Valor Actual</th>
+			<th>Total Compra</th>
+			<th>Total Actual</th>
+			<th>Gain / Loss</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% current_user.stocks.each do |stock| %>
+			<% if stock.quantity > 0 %>
+			<tr>
+				<td><%= stock.quantity %></td>
+				<td><%= stock.team.name %></td>
+				<td><%= number_to_currency(stock.price) %></td>
+				<td><%= number_to_currency(stock.team.current_value) %></td>
+				<td><%= number_to_currency(stock.total_investment_value) %></td>
+				<td><%= number_to_currency(stock.total_current_value) %></td>
+				<td><%= number_to_currency(stock.investment_return) %> <small><strong><%= number_to_percentage(stock.investment_return_percentage, precision: 2) %></strong></small></td>
+				<td><%= button_to "Sell", transactions_path(stock_id: stock), class: 'button' %></td>
+			</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="5"></td>
+			<td><%= number_to_currency(current_user.current_portfolio_value) %></td>
+			<td><%= number_to_currency(current_user.current_portfolio_gains) %></td>
+		</tr>
+	</tfoot>
+</table>

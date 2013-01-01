@@ -19,7 +19,7 @@
     <td><%= team.name %></td>
     <td><%= 70 - team.total_stocks_sold %></td>
     <td><%= number_to_currency(team.current_value) %></td>
-    <td><%= button_to 'Buy', stocks_path(team_id: team), class: 'button' %></td>
+    <td><%= button_to 'Buy', stocks_path(team_id: team), class: 'button' if can? :buy, Stock %></td>
   </tr>
 <% end %>
 </table>

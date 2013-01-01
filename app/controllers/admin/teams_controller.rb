@@ -20,7 +20,6 @@ class Admin::TeamsController < AdminController
 
   def new
     @team = Team.new
-    @team.build_stock
 
     respond_to do |format|
       format.html
@@ -65,7 +64,7 @@ class Admin::TeamsController < AdminController
     @team.destroy
 
     respond_to do |format|
-      format.html { redirect_to teams_url }
+      format.html { redirect_to admin_teams_url }
       format.json { head :no_content }
     end
   end

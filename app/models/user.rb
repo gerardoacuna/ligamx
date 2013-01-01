@@ -35,8 +35,12 @@ class User < ActiveRecord::Base
     stock
   end
 
+  def team_stock_quantity
+    
+  end
+
   def initial_available_credit
-    return 300
+    return 15
   end
 
   def total_portfolio_value

@@ -6,19 +6,28 @@ class Team < ActiveRecord::Base
 
   accepts_nested_attributes_for :matches, allow_destroy: true
 
+  def initial_stocks_available
+    return 60
+  end
+
+  def initial_stock_value
+    return 10
+  end
+
 	def total_stocks_sold
     stocks.to_a.sum { |stock| stock.quantity }
   end
 
   def current_value
-  	current_value = 5
+  	current_value = initial_stock_value
+    slope = 0.588235
   	matches.each do |match|
   		if match.result == "win"
-  			current_value *= position * 0.588235 + 4.411765
+  			current_value *= 1 + (match.position * slope + 4.411765) / 100
   		elsif match.result == "lose"
-  			current_value *= position * 0.588235 - 15.588235
+  			current_value *= 1 + (match.position * slope - 15.588235) / 100
   		else
-  			current_value
+  			current_value *= 1 + (match.position * 0.235294 - 1.23529) / 100
   		end
   	end
   	current_value

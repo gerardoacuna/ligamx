@@ -1,6 +1,7 @@
 class ChangeResultDataType < ActiveRecord::Migration
   def up
-  	change_column :matches, :result, :string
+  	remove_column :matches, :result
+  	add_column :matches, :result, :string
   end
 
   def down

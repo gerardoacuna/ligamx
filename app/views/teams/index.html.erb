@@ -1,7 +1,5 @@
 <h1>The Market</h1>
 
-<%#= link_to 'New Team', new_team_path, class: 'button' %>
-
 <table class="twelve">
   <thead>
     <tr>
@@ -17,7 +15,7 @@
   <tr>
     <td><%= team.position %></td>
     <td><%= team.name %></td>
-    <td><%= 70 - team.total_stocks_sold %></td>
+    <td><%= team.initial_stocks_available - team.total_stocks_sold %></td>
     <td><%= number_to_currency(team.current_value) %></td>
     <td><%= button_to 'Buy', stocks_path(team_id: team), class: 'button' if can? :buy, Stock %></td>
   </tr>

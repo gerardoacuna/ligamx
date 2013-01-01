@@ -6,6 +6,8 @@ Ligamx::Application.routes.draw do
   resources :stocks, only: [:create, :update]
   resources :transactions
 
+  match "market", to: 'teams#index', as: 'market'
+
   match "admin", to: "admin/teams#index"
   namespace :admin do
     resources :teams

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   def buy_stock(team_id, team_value)
   	stock = stocks.find_by_team_id(team_id)
-  	if stock && stock.price == stock.team.current_value
+  	if stock && stock.price == team_value
   		stock.quantity += 1
   	else
   		stock = stocks.build(team_id: team_id, price: team_value)
@@ -35,12 +35,20 @@ class User < ActiveRecord::Base
     stock
   end
 
+  def initial_available_credit
+    return 300
+  end
+
+  def total_portfolio_value
+    current_portfolio_value + available_credit
+  end
+
   def transaction_gains
     transactions.to_a.sum { |transaction| transaction.roi }
   end
 
   def available_credit
-    500 + total_investment_return
+    initial_available_credit + total_investment_return
   end
 
   def current_portfolio_value

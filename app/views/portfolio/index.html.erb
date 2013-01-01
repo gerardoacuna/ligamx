@@ -9,25 +9,31 @@
 	<li>
 		<div class="panel">
 			<h4><%= number_to_currency(current_user.available_credit) %></h4>
-			<p><strong>Credit</strong></p>
+			<p><strong>Crédito</strong></p>
 		</div>
 	</li>
-	<li>
+	<!-- <li>
 		<div class="panel">
-			<h4><%= number_to_currency(current_user.total_credit_spent) %></h4>
+			<h4><%#= number_to_currency(current_user.total_credit_spent) %></h4>
 			<p><strong>Spent</strong></p>
 		</div>
 	</li>
 	<li>
 		<div class="panel">
-			<h4><%= number_to_currency(current_user.total_credit_earned) %></h4>
+			<h4><%#= number_to_currency(current_user.total_credit_earned) %></h4>
 			<p><strong>Earned</strong></p>
 		</div>
 	</li>
 	<li>
 		<div class="panel">
-			<h4><%= number_to_currency(current_user.total_investment_return) %></h4>
+			<h4><%#= number_to_currency(current_user.total_investment_return) %></h4>
 			<p><strong>ROI</strong></p>
+		</div>
+	</li> -->
+	<li>
+		<div class="panel">
+			<h4><%= number_to_currency(current_user.total_portfolio_value) %></h4>
+			<p><strong>Valor Portafolio</strong></p>
 		</div>
 	</li>
 </ul>

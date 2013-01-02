@@ -1,8 +1,23 @@
-<p>
-  <b>Name:</b>
-  <%= @team.name %>
-</p>
+<h1><%= @team.name %></h1>
 
+<table class="twelve">
+	<thead>
+		<tr>
+			<td>Lugar</td>
+			<td>Fecha</td>
+			<td>Resultado</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @team.matches.each do |match| %>
+			<tr>
+				<td><%= match.position %></td>
+				<td><%= match.match_date %></td>
+				<td><%= match.result.humanize %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
 
 <%= link_to 'Edit', edit_admin_team_path(@team) %> |
 <%= link_to 'Back', admin_teams_path %>

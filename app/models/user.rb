@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def initial_available_credit
-    return 15
+    return 300
   end
 
   def total_portfolio_value

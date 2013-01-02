@@ -5,7 +5,7 @@ class Ability
 
     can :buy, Stock do |stock|
       user.available_credit > stock.team.current_value
-      user.team_stock_quantity >= 20
+      stock.team.stocks_available < 1
     end
     # Define abilities for the passed in user here. For example:
     #

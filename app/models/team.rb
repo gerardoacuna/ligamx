@@ -18,6 +18,10 @@ class Team < ActiveRecord::Base
     stocks.to_a.sum { |stock| stock.quantity }
   end
 
+  def stocks_available
+    initial_stocks_available - total_stocks_sold
+  end
+
   def current_value
   	current_value = initial_stock_value
     slope = 0.588235

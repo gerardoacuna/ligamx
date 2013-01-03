@@ -2,5 +2,5 @@
 
 <% @announcements.each do |announcement| %>
 	<h3><%= announcement.title %></h3>
-	<%= announcement.content %>
+	<%= raw announcement.content %>
 <% end %>

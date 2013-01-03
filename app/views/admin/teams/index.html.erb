@@ -7,6 +7,7 @@
       <th>Pos.</th>
       <th>Name</th>
       <th>Stocks Available</th>
+      <th>Last Match Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
     <td><%= team.position %></td>
     <td><%= team.name %></td>
     <td><%= team.stocks_available %></td>
+    <td><%= team.closest_match_date.to_formatted_s(:long) %></td>
     <td><%= link_to 'Show', [:admin, team] %></td>
     <td><%= link_to 'Edit', edit_admin_team_path(team) %></td>
     <td><%= link_to 'Destroy', [:admin, team], method: :delete, data: { confirm: 'Are you sure?' } %></td>

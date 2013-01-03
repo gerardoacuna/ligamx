@@ -6,7 +6,9 @@ class AdminController < ApplicationController
 
 	private
 		def admin_user
-      redirect_to(root_path) unless current_user.has_role? :admin
-      flash[:alert] = "Restricted area."
+			unless current_user.has_role? :admin
+	      redirect_to(root_path)
+	      flash[:alert] = "Restricted area."
+	    end
 		end
 end

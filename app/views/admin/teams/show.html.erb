@@ -14,7 +14,7 @@
 			<tr>
 				<td><%= match.position %></td>
 				<td><%= match.rival_position %></td>
-				<td><%= match.date %></td>
+				<td><%= match.date.to_formatted_s(:long) %></td>
 				<td><%= match.result %></td>
 			</tr>
 		<% end %>

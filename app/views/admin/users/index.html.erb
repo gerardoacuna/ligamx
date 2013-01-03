@@ -1,7 +1,7 @@
 <%= link_to 'New User', new_admin_user_path, class: 'button right' %>
 
 <h1>Users</h1>
-
+<h6><%= @users.size %> registered users.</h6>
 <table class="twelve">
   <thead>
     <tr>
@@ -17,8 +17,8 @@
   <tr>
     <td><%= user.email %></td>
     <td><%= user.sign_in_count %></td>
-    <td><%= user.current_sign_in_at %></td>
-    <td><%= user.current_sign_in_at %></td>
+    <td><%= user.current_sign_in_at.to_formatted_s(:long) %></td>
+    <td><%= user.current_sign_in_at.to_formatted_s(:long) %></td>
     <td><%= link_to 'Show', [:admin, user] %></td>
     <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
     <td><%= link_to 'Destroy', [:admin, user], method: :delete, data: { confirm: 'Are you sure?' } %></td>

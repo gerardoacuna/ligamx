@@ -3,10 +3,10 @@ class Ability
 
   def initialize(user)
 
-    can :buy, Stock do |stock|
-      user.available_credit > stock.team.current_value
-      stock.team.stocks_available < 1
+    can :buy, Team do |team|
+      user.available_credit < team.current_value || team.stocks_available < 1 || user_stock_quantity(user).first.to_i >= 20 || team.closest_match_date <= DateTime.now && team.end_match_date >= DateTime.now
     end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

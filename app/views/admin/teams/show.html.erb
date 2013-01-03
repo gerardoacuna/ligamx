@@ -3,7 +3,8 @@
 <table class="twelve">
 	<thead>
 		<tr>
-			<td>Lugar</td>
+			<td>Pos.</td>
+			<td>Pos. Rival</td>
 			<td>Fecha</td>
 			<td>Resultado</td>
 		</tr>
@@ -12,7 +13,8 @@
 		<% @team.matches.each do |match| %>
 			<tr>
 				<td><%= match.position %></td>
-				<td><%= match.match_date %></td>
+				<td><%= match.rival_position %></td>
+				<td><%= match.date %></td>
 				<td><%= match.result %></td>
 			</tr>
 		<% end %>

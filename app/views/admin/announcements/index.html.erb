@@ -1,0 +1,11 @@
+<%= link_to 'New Announcement', new_admin_announcement_path, class: 'button right' %>
+<h1>Manage Announcements</h1>
+
+<% @announcements.each do |announcement| %>
+  <h3><%= announcement.title %></h3>
+  <%= raw announcement.content %>
+
+  <%= link_to 'Show', [:admin, announcement] %>
+  <%= link_to 'Edit', edit_admin_announcement_path(announcement) %>
+  <%= link_to 'Destroy', [:admin, announcement], method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

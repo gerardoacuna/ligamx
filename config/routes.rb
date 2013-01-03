@@ -6,14 +6,16 @@ Ligamx::Application.routes.draw do
   resources :stocks, only: [:create, :update]
   resources :transactions
 
+  match "portfolio", to: 'portfolio#index', as: 'portfolio'
   match "market", to: 'teams#index', as: 'market'
 
   match "admin", to: "admin/teams#index"
   namespace :admin do
     resources :teams
     resources :users
+    resources :announcements
   end
 
-  root to: "portfolio#index"
+  root to: "home#index"
 
 end

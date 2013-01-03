@@ -1,0 +1,17 @@
+<%= form_for [:admin, @announcement], html: { class: "custom" } do |f| %>
+
+  <div class="row">
+    <div class="twelve columns">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Save", class: 'button' %>
+  </div>
+<% end %>

@@ -4,8 +4,6 @@ class StocksController < ApplicationController
 		team = Team.find(params[:team_id])
     @stock = @user.buy_stock(team.id, team.current_value)
 
-    # authorize! :buy, @stock
-
     respond_to do |format|
       if @stock.save
         format.html { redirect_to teams_path, notice: "You bought #{team.name} stock." }

@@ -9,7 +9,7 @@
 	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+	<title><%= content_for?(:title) ? yield(:title) : "Bolsa Mexicana de Fútbol" %></title>
   
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "application" %>
@@ -20,7 +20,7 @@
 <body>
 	<div class="row">
 		<div class="twelve columns">
-			<%= render 'layouts/navigation' if user_signed_in? %>
+			<%= render 'layouts/navigation' %>
 			<%= render 'layouts/messages' %>
 			<%= yield %>
 		</div>

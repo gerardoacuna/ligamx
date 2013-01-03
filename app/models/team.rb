@@ -7,7 +7,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :matches, allow_destroy: true
 
   def can_buy_stock?(user)
-    unless user.available_credit < current_value || stocks_available < 1 || user_stock_quantity(user).first.to_i >= 20 || closest_match_date <= DateTime.now && end_match_date >= DateTime.now
+    unless user.available_credit < current_value || stocks_available < 1 || user_stock_quantity(user).first.to_i >= 20 #|| closest_match_date < DateTime.now && end_match_date > DateTime.now
       return true
     else
       errors.add(:base, 'You can not buy this stock.')

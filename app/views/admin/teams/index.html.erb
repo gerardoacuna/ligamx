@@ -18,6 +18,13 @@
     <td><%= team.name %></td>
     <td><%= team.stocks_available %></td>
     <td><%= team.closest_match_date.to_formatted_s(:long) %></td>
+    <td><%= DateTime.now.to_formatted_s(:long) %></td>
+    <td><%= team.end_match_date.to_formatted_s(:long) %></td>
+    <% if team.can_buy_stock?(current_user) %>
+      <td><span class="success label">Can buy</span></td>
+    <% else %>
+      <td><span class="alert label">Can't buy</span></td>
+    <% end %>
     <td><%= link_to 'Show', [:admin, team] %></td>
     <td><%= link_to 'Edit', edit_admin_team_path(team) %></td>
     <td><%= link_to 'Destroy', [:admin, team], method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me, :credit
   

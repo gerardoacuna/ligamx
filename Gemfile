@@ -3,9 +3,11 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.9'
 
 gem 'pg'
-gem 'devise'
 gem 'nested_form'
+
+gem 'devise'
 gem 'cancan'
+gem 'rolify'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -3,9 +3,15 @@ class Ability
 
   def initialize(user)
 
-    can :buy, Team do |team|
-      user.available_credit < team.current_value || team.stocks_available < 1 || user_stock_quantity(user).first.to_i >= 20 || team.closest_match_date <= DateTime.now && team.end_match_date >= DateTime.now
-    end
+    # can :buy, Team do |team|
+    #   # user.available_credit < team.current_value || team.stocks_available < 1 || user_stock_quantity(user).first.to_i >= 20 || team.closest_match_date <= DateTime.now && team.end_match_date >= DateTime.now
+    # end
+
+    # if user.has_role? :admin
+    #   can :access, :all
+    # else
+    #   can :read, :all
+    # end
 
     # Define abilities for the passed in user here. For example:
     #

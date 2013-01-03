@@ -1,20 +1,20 @@
 <%= form_for [:admin, @user] do |f| %>
 
 <div class="row">
-	<div class="six columns">
-		<div><%= f.label :email %><br />
-	  <%= f.email_field :email %></div>
+	<div class="ten columns">
+		<%= f.label :email %>
+	  <%= f.email_field :email %>
 
-	  <div><%= f.label :password %><br />
-	  <%= f.password_field :password %></div>
+	  <%= f.label :password %>
+	  <%= f.password_field :password %>
 
-	  <div><%= f.label :password_confirmation %><br />
-	  <%= f.password_field :password_confirmation %></div>
+	  <%= f.label :password_confirmation %>
+	  <%= f.password_field :password_confirmation %>
 	</div>
 
-	<div class="six columns">
-		<div><%= f.label :credit %><br />
-	  <%= f.number_field :credit %></div>
+	<div class="two columns">
+		<%= f.label :credit %>
+	  <%= f.number_field :credit %>
 	</div>	
 </div>
 

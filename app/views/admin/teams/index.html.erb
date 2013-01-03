@@ -17,16 +17,11 @@
     <td><%= team.position %></td>
     <td><%= team.name %></td>
     <td><%= team.stocks_available %></td>
-    <td><%= team.closest_match_date.to_formatted_s(:long) %></td>
-    <td><%= DateTime.now.to_formatted_s(:long) %></td>
     <td><%= team.end_match_date.to_formatted_s(:long) %></td>
-    <% unless team.can_buy_stock?(current_user) && team.match_right_now? %>
-      <td><span class="success label">Can buy</span></td>
-    <% else %>
-      <td><span class="alert label">Can't buy</span></td>
-    <% end %>
     <% if team.match_right_now? %>
-      <td><span class="alert label">Match right now.</span></td>
+      <td><span class="success label">Playing</span></td>
+    <% else %>
+      <td><span class="alert label">Not Playing</span></td>
     <% end %>
     <td><%= link_to 'Show', [:admin, team] %></td>
     <td><%= link_to 'Edit', edit_admin_team_path(team) %></td>

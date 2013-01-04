@@ -27,7 +27,11 @@
 				<td><%= number_to_currency(stock.total_purchase_value) %></td>
 				<td><%= number_to_currency(stock.total_current_value) %></td>
 				<td><%= number_to_currency(stock.investment_return) %> <small><strong><%= number_to_percentage(stock.investment_return_percentage, precision: 2) %></strong></small></td>
-				<td><%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_stock' unless stock.team.match_right_now? %></td>
+				<td>
+					<div class="sell">
+						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button' unless stock.team.match_right_now? %>
+					</div>
+				</td>
 			</tr>
 			<% end %>
 		<% end %>

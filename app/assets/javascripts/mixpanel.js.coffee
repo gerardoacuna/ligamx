@@ -1,3 +1,3 @@
 jQuery ->
-	# mixpanel.track_links('#buy_stock', 'Bought stock');
-	# mixpanel.track_links('#sell_stock', 'Sold stock');
+	mixpanel.track_forms('.buy form', 'Acción comprada');
+	mixpanel.track_forms('.sell form', 'Acción vendida');

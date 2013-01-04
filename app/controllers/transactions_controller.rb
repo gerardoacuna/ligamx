@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
 
 		respond_to do |format|
 			if @transaction.save
-        format.html { redirect_to root_url, notice: "Succesfully sold stock." }
+        format.html { redirect_to portfolio_url, notice: "Succesfully sold stock." }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
         format.html { render action: "new" }

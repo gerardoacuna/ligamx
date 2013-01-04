@@ -72,6 +72,7 @@ GEM
       sassy-math (>= 1.2)
     multi_json (1.5.0)
     nested_form (0.3.1)
+    newrelic_rpm (3.5.4.34)
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -140,6 +141,7 @@ DEPENDENCIES
   devise
   jquery-rails
   nested_form
+  newrelic_rpm
   pg
   rails (= 3.2.9)
   rolify

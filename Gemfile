@@ -4,7 +4,7 @@ gem 'rails', '3.2.9'
 
 gem 'pg'
 gem 'nested_form'
-
+gem 'newrelic_rpm'
 gem 'devise'
 gem 'cancan'
 gem 'rolify'

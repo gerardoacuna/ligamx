@@ -22,8 +22,14 @@
     <td><%= team.name %></td>
     <td><%= team.stocks_available %></td>
     <td><%= number_to_currency(team.current_value) %></td>
-    <% unless team.can_buy_stock?(current_user) && team.match_right_now? %>
-      <td><%= button_to 'Buy', stocks_path(team_id: team), class: 'button', id: 'buy_stock' %></td>
+    <% if team.can_buy_stock?(current_user) || team.match_right_now? %>
+      <% unless team.match_right_now? %>
+        <td><%= button_to 'Buy', stocks_path(team_id: team), class: 'button', id: 'buy_stock' %></td>
+      <% else %>
+        <td>Team Playing</td>
+      <% end %>
+    <% else %>
+      <td>Not Available</td>
     <% end %>
   </tr>
 <% end %>

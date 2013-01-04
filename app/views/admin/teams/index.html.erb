@@ -18,7 +18,12 @@
     <td><%= team.name %></td>
     <td><%= team.stocks_available %></td>
     <td><%= team.end_match_date.to_formatted_s(:long) %></td>
-    <% if team.match_right_now? %>
+    <% if team.can_buy_stock?(current_user) %>
+      <td><span class="success label">can buy</span></td>
+    <% else %>
+      <td><span class="alert label">cant buy</span></td>
+    <% end %>
+    <% unless team.match_right_now? %>
       <td><span class="success label">Playing</span></td>
     <% else %>
       <td><span class="alert label">Not Playing</span></td>

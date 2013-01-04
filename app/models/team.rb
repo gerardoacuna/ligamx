@@ -7,12 +7,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :matches, allow_destroy: true
 
   def can_buy_stock?(user)
-    unless user.available_credit < current_value || stocks_available < 1 || user_stock_quantity(user).first.to_i >= 20
-      return true
-    else
-      errors.add(:base, 'You can not buy this stock.')
-      return false
-    end
+    user.available_credit > current_value && stocks_available > 0 && user_stock_quantity(user).first.to_i <= 20
   end
 
   def match_right_now?
@@ -39,7 +34,7 @@ class Team < ActiveRecord::Base
   end
 
   def initial_stocks_available
-    return 60
+    return 3
   end
 
   def initial_stock_value

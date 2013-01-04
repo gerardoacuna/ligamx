@@ -1,0 +1,22 @@
+.gain {
+	color: #2E8B57;
+	&:after {
+		content: '';
+	}
+}
+
+.loss {
+	color: #DC143C;
+	&:after {
+		content: '';
+	}
+}
+
+.gain, .loss {
+	&:after {
+		font-family: 'Entypo';
+		font-size: 40px;
+		font-weight: normal;
+		margin-left: 5px;
+	}
+}

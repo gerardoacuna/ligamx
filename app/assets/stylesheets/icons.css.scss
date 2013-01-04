@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Entypo';
+  src: font-url('entypo.eot');
+  src: font-url('entypo.eot?#iefix') format('embedded-opentype'),
+       font-url('entypo.woff') format('woff'),
+       font-url('entypo.ttf') format('truetype'),
+       font-url('entypo.svg#Entypo') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EntypoSocial';
+  src: font-url('entypo-social.eot');
+  src: font-url('entypo-social.eot?#iefix') format('embedded-opentype'),
+       font-url('entypo-social.woff') format('woff'),
+       font-url('entypo-social.ttf') format('truetype'),
+       font-url('entypo-social.svg#EntypoSocial') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.entypo {
+  font-family: 'Entypo';
+  line-height: 0.5;
+}
+
+.entypo-social {
+  font-family: 'EntypoSocial';
+  line-height: 0.5;
+}
+
+.entypo, .entypo-social {
+  &.x-large {
+    font-size: 80px;
+  }
+  &.large {
+    font-size: 60px;
+  }
+  &.medium {
+    font-size: 40px;
+  }
+  &.small {
+    font-size: 30px;
+  }
+  &.x-small {
+    font-size: 20px;
+  }
+}
+
+.badge {
+  width: 65px;
+  height: 65px;
+  display: block;
+  float: left;
+  color: #fff;
+  text-align: center;
+  padding-top: 17px;
+  margin: 0 25px 15px 0;
+}

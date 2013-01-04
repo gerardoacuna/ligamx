@@ -18,6 +18,12 @@
 			<p><strong>Valor Portafolio</strong></p>
 		</div>
 	</li>
+	<li>
+		<div class="panel">
+			<h4 class="<%= gain_loss(current_user.transaction_gains) %>"><%= number_to_currency(current_user.transaction_gains) %></h4>
+			<p><strong>Gain/Loss</strong></p>
+		</div>
+	</li>
 </ul>
 
 <dl class="tabs">

@@ -28,7 +28,7 @@
 				<td><%= number_to_currency(stock.team.current_value) %></td>
 				<td><%= number_to_currency(stock.total_purchase_value) %></td>
 				<td><%= number_to_currency(stock.total_current_value) %></td>
-				<td><%= number_to_currency(stock.investment_return) %> <small><strong><%= number_to_percentage(stock.investment_return_percentage, precision: 2) %></strong></small></td>
+				<td class="<%= gain_loss(stock.investment_return) %>"><%= number_to_currency(stock.investment_return) %></td>
 				<td>
 					<div class="sell">
 						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button' unless stock.team.match_right_now? %>
@@ -40,9 +40,9 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="5"></td>
+			<td colspan="6"></td>
 			<td><%= number_to_currency(current_user.current_portfolio_value) %></td>
-			<td><%= number_to_currency(current_user.current_portfolio_gains) %></td>
+			<td class="<%= gain_loss(current_user.current_portfolio_gains) %>"><%= number_to_currency(current_user.current_portfolio_gains) %></td>
 			<td></td>
 		</tr>
 	</tfoot>

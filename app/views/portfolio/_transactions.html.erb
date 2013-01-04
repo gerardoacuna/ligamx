@@ -19,7 +19,7 @@
 			<td><%= transaction.stock.team.name %></td>
 			<td><%= number_to_currency(transaction.initial_value) %></td>
 			<td><%= number_to_currency(transaction.final_value) %></td>
-			<td><%= number_to_currency(transaction.roi) %></td>
+			<td class="<%= gain_loss(transaction.roi) %>"><%= number_to_currency(transaction.roi) %></td>
 			<td><%= transaction.created_at.to_formatted_s(:long)  %></td>
 		</tr>
 		<% end %>
@@ -27,7 +27,7 @@
 	<tfoot>
 		<tr>
 			<td colspan="3"></td>
-			<td><%= current_user.transaction_gains %></td>
+			<td class="<%= gain_loss(current_user.transaction_gains) %>"><%= current_user.transaction_gains %></td>
 		</tr>
 	</tfoot>
 </table>

@@ -22,7 +22,7 @@
 <body>
 	<div class="row">
 		<div class="twelve columns">
-			<%= render 'layouts/navigation' %>
+			<%= render 'layouts/navigation' if user_signed_in? %>
 			<%= render 'layouts/messages' %>
 			<%= yield %>
 		</div>

@@ -49,7 +49,11 @@ class User < ActiveRecord::Base
   end
 
   def available_credit
-    initial_available_credit + total_investment_return
+    initial_available_credit - total_credit_spent + total_credit_earned - current_portfolio_assets
+  end
+
+  def current_portfolio_assets
+    stocks.to_a.sum { |stock| stock.total_purchase_value }
   end
 
   def current_portfolio_value
@@ -61,15 +65,15 @@ class User < ActiveRecord::Base
   end
 
   def total_credit_spent
-    stocks.to_a.sum { |stock| stock.total_investment_value }
+    transactions.to_a.sum { |transaction| transaction.initial_value }
   end
 
   def total_credit_earned
     transactions.to_a.sum { |transaction| transaction.final_value }
   end
 
-  def total_investment_return
-    total_credit_earned - total_credit_spent
-  end
+  # def total_investment_return
+  #   total_credit_earned - total_credit_spent
+  # end
 
 end

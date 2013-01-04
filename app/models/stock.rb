@@ -9,17 +9,22 @@ class Stock < ActiveRecord::Base
   	team.current_value * quantity
   end
 
-  def total_investment_value
-    if quantity > 0
-      price * quantity
+  def total_purchase_value
+    price * quantity
+  end
+
+  def purchase_history
+    if quantity == 0
+      total = price
     else
-      price
+      total = price * quantity
     end
+    total
   end
 
   def portfolio_return
     if quantity > 0
-      total_current_value - total_investment_value
+      total_current_value - total_purchase_value
     else
       0
     end
@@ -34,7 +39,7 @@ class Stock < ActiveRecord::Base
   end
 
   def investment_return_percentage
-  	100 * (total_current_value - total_investment_value) / total_investment_value
+  	100 * (total_current_value - total_purchase_value) / total_purchase_value
   end
 
 end

@@ -23,8 +23,8 @@ Ligamx::Application.configure do
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
-  # Mixpanel API
-  MIXPANEL_TOKEN = "cfd8bfc4d427959323dceb2b1fc6b44e"
+  # Mixpanel API key
+  MIXPANEL_TOKEN = "0b0f9ea18a538bb30dc3b636a97d9601"
 
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache

@@ -3,8 +3,9 @@
 		<h2>Sign in</h2>
 		<fieldset>
 				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "custom"}) do |f| %>
-				  <%= f.label :email %>
-				  <%= f.email_field :email %>
+				  
+				  <%= f.label :login, 'Username or Email' %>
+				  <%= f.email_field :login %>
 
 				  <%= f.label :password %>
 				  <%= f.password_field :password %>

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   rolify
 
-	attr_accessible :email, :password, :password_confirmation, :remember_me, :credit
+	attr_accessible :email, :password, :password_confirmation, :remember_me, :credit, :username, :login
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :stocks
   has_many :transactions
+
+  attr_accessor :login
 
   def buy_stock(team_id, team_value)
     stock = stocks.find_by_team_id_and_price(team_id, team_value)
@@ -79,6 +81,16 @@ class User < ActiveRecord::Base
 
   def total_credit_earned
     transactions.to_a.sum { |transaction| transaction.final_value }
+  end
+
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
   end
 
 end

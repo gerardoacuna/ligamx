@@ -27,7 +27,7 @@
 	<tfoot>
 		<tr>
 			<td colspan="3"></td>
-			<td class="<%= gain_loss(current_user.transaction_gains) %>"><%= current_user.transaction_gains %></td>
+			<td class="<%= gain_loss(current_user.transaction_gains) %>"><%= number_to_currency(current_user.transaction_gains) %></td>
 		</tr>
 	</tfoot>
 </table>

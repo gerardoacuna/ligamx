@@ -51,15 +51,15 @@ class Team < ActiveRecord::Base
 
   def current_value
   	current_value = initial_stock_value
-    slope = 0.588235
+    slope = 0.588235294117647
   	matches.each do |match|
-      position = (match.position.to_i - match.rival_position.to_i) / 2 + 9.5
+      position = 9.5 + (match.position.to_i - match.rival_position.to_i) * 0.5
   		if match.result == "win"
-  			current_value *= 1 + (position * slope + 4.411765) / 100
+  			current_value *= 1 + (position * slope + 4.41176470588235) / 100
   		elsif match.result == "lose"
-  			current_value *= 1 + (position * slope - 15.588235) / 100
+  			current_value *= 1 + (position * slope - 15.5882352941176) / 100
   		elsif match.result == "tie"
-  			current_value *= 1 + (position * 0.235294 - 1.23529) / 100
+  			current_value *= 1 + (position * 0.235294117647059 - 1.23529411764706) / 100
       else
         current_value
   		end

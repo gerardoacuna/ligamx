@@ -1,5 +1,5 @@
 
-<h2><%= current_user.username.nil? ? "Inversionista" : current_user.username %></h2>
+<h3><%= current_user.username.nil? ? "Inversionista" : current_user.username %> <small><%= link_to 'Edit profile', edit_user_registration_path %></small></h3>
 
 <ul class="block-grid six-up">
 	<!-- <li>

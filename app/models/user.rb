@@ -44,8 +44,9 @@ class User < ActiveRecord::Base
     all.sort { |a,b| b.total_portfolio_value <=> a.total_portfolio_value}
   end
 
+  #TODO Get user ranking.
   def rank
-    self.order_by_portfolio
+    # self.order_by_portfolio
   end
 
   def total_portfolio_value

@@ -40,6 +40,14 @@ class User < ActiveRecord::Base
     return 300
   end
 
+  def self.order_by_portfolio
+    all.sort { |a,b| b.total_portfolio_value <=> a.total_portfolio_value}
+  end
+
+  def rank
+    self.order_by_portfolio
+  end
+
   def total_portfolio_value
     current_portfolio_value + available_credit
   end

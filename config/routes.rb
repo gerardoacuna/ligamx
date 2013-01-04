@@ -5,6 +5,7 @@ Ligamx::Application.routes.draw do
   resources :teams, only: [:index, :show]
   resources :stocks, only: [:create, :update]
   resources :transactions
+  resources :rankings, only: :index
 
   match "portfolio", to: 'portfolio#index', as: 'portfolio'
   match "market", to: 'teams#index', as: 'market'

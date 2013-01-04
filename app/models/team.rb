@@ -55,11 +55,11 @@ class Team < ActiveRecord::Base
   	matches.each do |match|
       position = 9.5 + (match.position.to_i - match.rival_position.to_i) * 0.5
   		if match.result == "win"
-  			current_value *= 1 + (position * slope + 4.41176470588235) / 100
+  			current_value *= 1 + (position * slope + 4.41176470588235) * 0.01
   		elsif match.result == "lose"
-  			current_value *= 1 + (position * slope - 15.5882352941176) / 100
+  			current_value *= 1 + (position * slope - 15.5882352941176) * 0.01
   		elsif match.result == "tie"
-  			current_value *= 1 + (position * 0.235294117647059 - 1.23529411764706) / 100
+  			current_value *= 1 + (position * 0.235294117647059 - 1.23529411764706) * 0.01
       else
         current_value
   		end

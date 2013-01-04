@@ -1,3 +1,27 @@
 // Place all the styles related to the teams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.icon {
+	width: 25px;
+	height: 25px;
+	background-image: image-url('sprite_mexico_chico.gif');
+	&.monterrey { background-position: 0px -450px; }
+	&.america { background-position: 0px -125px; }
+	&.atlante { background-position: 0px -225px; }
+	&.atlas { background-position: 0px -150px; }
+	&.chivas { background-position: 0px -275px; }
+	&.tijuana { background-position: -25px -75px; }
+	&.cruz-azul { background-position: 0px -300px; }
+	&.queretaro { background-position: 0px -50px; }
+	&.chiapas { background-position: 0px -175px;}
+	&.leon { background-position: -25px -225px; }
+	&.morelia { background-position: 0px -250px; }
+	&.pachuca { background-position: 0px -350px; }
+	&.puebla { background-position: 0px -375px; }
+	&.pumas { background-position: 0px -25px; }
+	&.san-luis { background-position: 0px -200px; }
+	&.santos { background-position: 0px -475px; }
+	&.tigres { background-position: 0px -400px; }
+	&.toluca { background-position: 0px -100px; }
+}

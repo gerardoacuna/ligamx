@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   has_many :transactions
 
   def buy_stock(team_id, team_value)
-  	stock = stocks.find_by_team_id(team_id)
-  	if stock && stock.price == team_value
-  		stock.quantity += 1
+    stock = stocks.find_by_team_id_and_price(team_id, team_value)
+  	if stock
+      stock.quantity += 1
   	else
   		stock = stocks.build(team_id: team_id, price: team_value)
   	end
@@ -71,9 +71,5 @@ class User < ActiveRecord::Base
   def total_credit_earned
     transactions.to_a.sum { |transaction| transaction.final_value }
   end
-
-  # def total_investment_return
-  #   total_credit_earned - total_credit_spent
-  # end
 
 end

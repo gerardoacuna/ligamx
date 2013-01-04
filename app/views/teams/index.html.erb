@@ -5,10 +5,13 @@
   <p>En esta página puedes ver el total de acciones disponibles de cada equipo. Da click en <strong>Buy</strong> para comprar una acción. Tienes un límite de 20 acciones por equipo.</p>
 </div>
 
+<h4>Efectivo disponible: <%= number_to_currency(current_user.available_credit) %></h4>
+
 <table class="twelve">
   <thead>
     <tr>
       <th>Pos.</th>
+      <th></th>
       <th>Name</th>
       <th>Available</th>
       <th>Current Value</th>
@@ -19,6 +22,7 @@
 <% @teams.each do |team| %>
   <tr>
     <td><%= team.position %></td>
+    <td><div class="icon <%= team.name.parameterize %>"></div></td>
     <td><%= team.name %></td>
     <td><%= team.stocks_available %></td>
     <td><%= number_to_currency(team.current_value) %></td>

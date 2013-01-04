@@ -1,5 +1,5 @@
 class Transaction < ActiveRecord::Base
-  attr_accessible :final_value, :initial_value, :roi, :stock_id
+  attr_accessible :stock_id, :final_value, :initial_value, :roi
 
   belongs_to :user
   belongs_to :stock

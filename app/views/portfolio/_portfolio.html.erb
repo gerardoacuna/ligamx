@@ -7,6 +7,7 @@
 	<thead>
 		<tr>
 			<th>#</th>
+			<th></th>
 			<th>Equipo</th>
 			<th>Valor Compra</th>
 			<th>Valor Actual</th>
@@ -21,6 +22,7 @@
 			<% if stock.quantity > 0 %>
 			<tr>
 				<td><%= stock.quantity %></td>
+		    <td><div class="icon <%= stock.team.name.parameterize %>"></div></td>
 				<td><%= stock.team.name %></td>
 				<td><%= number_to_currency(stock.price) %></td>
 				<td><%= number_to_currency(stock.team.current_value) %></td>
@@ -38,9 +40,10 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="6"></td>
+			<td colspan="5"></td>
 			<td><%= number_to_currency(current_user.current_portfolio_value) %></td>
 			<td><%= number_to_currency(current_user.current_portfolio_gains) %></td>
+			<td></td>
 		</tr>
 	</tfoot>
 </table>

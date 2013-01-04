@@ -26,7 +26,7 @@
     <% unless team.match_right_now? %>
       <td><span class="success label">Playing</span></td>
     <% else %>
-      <td><span class="alert label">Not Playing</span></td>
+      <td><span class="alert label">Playing</span></td>
     <% end %>
     <td><%= link_to 'Show', [:admin, team] %></td>
     <td><%= link_to 'Edit', edit_admin_team_path(team) %></td>

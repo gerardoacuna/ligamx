@@ -1,6 +1,3 @@
 jQuery ->
-	$("#buy_stock").click ->
-		mixpanel.track "Stock bought"
-
-	$("#sell_stock").click ->
-		mixpanel.track "Stock sold"
+	mixpanel.track_links('#buy_stock', 'Bought stock');
+	mixpanel.track_links('#sell_stock', 'Sold stock');

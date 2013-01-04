@@ -2,7 +2,7 @@ class Team < ActiveRecord::Base
   attr_accessible :name, :position, :matches_attributes
 
   has_many :stocks
-  has_many :matches
+  has_many :matches, order: "date"
 
   accepts_nested_attributes_for :matches, allow_destroy: true
 

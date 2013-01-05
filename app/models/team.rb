@@ -7,7 +7,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :matches, allow_destroy: true
 
   def can_buy_stock?(user)
-    user.available_credit > current_value && stocks_available > 0 && user_stock_quantity(user).first.to_i <= 19
+    user.available_credit >= current_value && stocks_available > 0 && user_stock_quantity(user).first.to_i <= 19
   end
 
   def match_right_now?

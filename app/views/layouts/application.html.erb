@@ -53,8 +53,10 @@
 	</footer>
 </body>
 
-<%= javascript_tag do %>
-  window.user = "<%=j current_user.email %>";
+<% unless controller.controller_name == 'sessions' && controller.action_name == 'new' %>
+	<%= javascript_tag do %>
+	  window.user = "<%=j current_user.email %>";
+	<% end %>
 <% end %>
 
 </html>

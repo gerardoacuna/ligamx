@@ -33,7 +33,7 @@
         <ul class="right">
           <li class="divider show-for-medium-and-up"></li>        
           <li class="has-dropdown">
-            <a href="#"><%= current_user.email %></a>
+            <a href="#"><%= current_user.username.nil? ? current_user.email : current_user.username %></a>
             <ul class="dropdown">
               <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
               <li class="divider"></li>

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :username, :presence => true
+
   has_many :stocks
   has_many :transactions
 
@@ -49,6 +51,10 @@ class User < ActiveRecord::Base
   #TODO Get user ranking.
   def rank
     # self.order_by_portfolio
+  end
+
+  def total_return_percentage
+    100 * (total_portfolio_value - initial_available_credit) / initial_available_credit
   end
 
   def total_portfolio_value

@@ -1,9 +1,10 @@
-<h1>Rankings</h1>
+<h3>Rankings</h3>
 
-<table class="twelve">
+<table class="twelve responsive">
 	<thead>
 		<tr>
 			<th>Pos.</th>
+			<th></th>
 			<th>Nombre</th>
 			<th>Valor Portafolio</th>
 		</tr>
@@ -12,11 +13,8 @@
 		<% @players.each_with_index do |player, index| %>
 		<tr>
 			<td><%= index + 1 %></td>
-			<% if player.username.nil? %>
-				<td><%= player.email %></td>
-			<% else %>
-				<td><%= player.username %></td>
-			<% end %>
+			<td><%= gravatar_for player, 32 %></td>
+			<td><%= player.username.nil? ? player.email : player.username %></td>
 			<td><%= number_to_currency(player.total_portfolio_value, precision: 4) %></td>
 		</tr>
 		<% end %>

@@ -1,37 +1,52 @@
+<div class="row">
+	<div class="twelve columns">
+		<h3><%= current_user.username.nil? ? "Inversionista" : current_user.username %> <small><%= link_to 'Edit profile', edit_user_registration_path %></small></h3>
+	</div>
+</div>
 
-<h3><%= current_user.username.nil? ? "Inversionista" : current_user.username %> <small><%= link_to 'Edit profile', edit_user_registration_path %></small></h3>
 
-<ul class="block-grid six-up">
-	<!-- <li>
+<div class="row">
+	<div class="three columns">
+		<!-- <li>
+			<div class="panel">
+				<h4><%#= current_user.ranking %></h4>
+				<p><strong>Ranking</strong></p>
+			</div>
+		</li> -->
+		
+		<%= link_to 'https://en.gravatar.com/site/signup/', class: 'th' do %>
+			<%= gravatar_for current_user, 220 %>
+		<% end %>
+		<h6><%= link_to 'Add avatar', 'https://en.gravatar.com/site/signup/' %></h6>
+		<hr>
+
 		<div class="panel">
-			<h4><%#= current_user.ranking %></h4>
-			<p><strong>Ranking</strong></p>
+			<h4><%= number_to_currency(current_user.available_credit) %> <small></small></h4>
+			<h4><small>Efectivo</small></h4>
 		</div>
-	</li> -->
-	<li>
-		<div class="panel">
-			<h4><%= number_to_currency(current_user.available_credit) %></h4>
-			<p><strong>Efectivo</strong></p>
-		</div>
-	</li>
-	<li>
 		<div class="panel">
 			<h4><%= number_to_currency(current_user.total_portfolio_value) %></h4>
-			<p><strong>Valor Portafolio</strong></p>
+			<h4><small>Valor Portafolio</small></h4>
 		</div>
-	</li>
-</ul>
+		<div class="panel">
+			<h4 class="<%= gain_loss(current_user.total_return_percentage) %>"><%= number_to_percentage(current_user.total_return_percentage) %></h4>
+			<h4><small>Rendimiento</small></h4>
+		</div>
+	</div>
+	
+	<div class="nine columns">
+		<dl class="tabs">
+		  <dd class="active"><a href="#portfolio">Acciones</a></dd>
+		  <dd><a href="#sales">Ventas</a></dd>
+		</dl>
 
-<dl class="tabs">
-  <dd class="active"><a href="#portfolio">Acciones</a></dd>
-  <dd><a href="#sales">Ventas</a></dd>
-</dl>
-
-<ul class="tabs-content">
-  <li class="active" id="portfolioTab">
-  	<%= render 'portfolio' %>
-  </li>
-  <li id="salesTab">
-  	<%= render 'transactions' %>
-  </li>
-</ul>
+		<ul class="tabs-content">
+		  <li class="active" id="portfolioTab">
+		  	<%= render 'portfolio' %>
+		  </li>
+		  <li id="salesTab">
+		  	<%= render 'transactions' %>
+		  </li>
+		</ul>
+	</div>
+</div>

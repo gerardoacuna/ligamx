@@ -36,6 +36,25 @@
 			<%= yield %>
 		</div>
 	</div>
+
+	<footer class="row">
+	  <div class="twelve columns">
+	    <hr />
+	    <div class="row">
+	      <div class="six columns">
+	        <p>&copy; Ijooooo.</p>
+	      </div>
+	        <a href="http://mixpanel.com/f/partner" class="right">
+	        	<img src="http://mixpanel.com/site_media/images/partner/badge_blue.png" alt="Real Time Web Analytics" />
+	        </a>
+	      </div>
+	    </div>
+	  </div> 
+	</footer>
 </body>
+
+<%= javascript_tag do %>
+  window.user = "<%=j current_user.email %>";
+<% end %>
 
 </html>

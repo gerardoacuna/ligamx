@@ -1,44 +1,59 @@
-<h1>The Market</h1>
-
-<div class="panel">
-  <h5>Instrucciones</h5>
-  <p>En esta página puedes ver el total de acciones disponibles de cada equipo. Da click en <strong>Buy</strong> para comprar una acción. Tienes un límite de 20 acciones por equipo.</p>
+<div class="row">
+  <div class="twelve columns">
+     <h1>The Market</h1>
+  </div>
 </div>
 
-<h4>Efectivo disponible: <%= number_to_currency(current_user.available_credit) %></h4>
+<div class="row">
+  <div class="nine columns" role="content">
 
-<table class="twelve">
-  <thead>
-    <tr>
-      <th>Pos.</th>
-      <th></th>
-      <th>Name</th>
-      <th>Available</th>
-      <th>Current Value</th>
-      <th></th>
-    </tr>
-  </thead>
+    <table class="twelve responsive">
+      <thead>
+        <tr>
+          <th>Pos.</th>
+          <th></th>
+          <th>Name</th>
+          <th>Available</th>
+          <th>Current Value</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<% @teams.each do |team| %>
-  <tr>
-    <td><%= team.position %></td>
-    <td><div class="icon <%= team.name.parameterize %>"></div></td>
-    <td><%= team.name %></td>
-    <td><%= team.stocks_available %></td>
-    <td><%= number_to_currency(team.current_value) %></td>
-    <% if team.can_buy_stock?(current_user) || team.match_right_now? %>
-      <% unless team.match_right_now? %>
-        <td>
-          <div class="buy">
-            <%= button_to 'Buy', stocks_path(team_id: team), class: 'button', id: 'buy_button' %>    
-          </div>
-        </td>
-      <% else %>
-        <td>Team Playing</td>
-      <% end %>
-    <% else %>
-      <td>Not Available</td>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.position %></td>
+        <td><div class="icon <%= team.name.parameterize %>"></div></td>
+        <td><%= team.name %></td>
+        <td><%= team.stocks_available %></td>
+        <td><%= number_to_currency(team.current_value) %></td>
+        <% if team.can_buy_stock?(current_user) || team.match_right_now? %>
+          <% unless team.match_right_now? %>
+            <td>
+              <div class="buy">
+                <%= button_to 'Buy', stocks_path(team_id: team), class: 'button', id: 'buy_button' %>    
+              </div>
+            </td>
+          <% else %>
+            <td>Team Playing</td>
+          <% end %>
+        <% else %>
+          <td>Not Available</td>
+        <% end %>
+      </tr>
     <% end %>
-  </tr>
-<% end %>
-</table>
+    </table>
+
+  </div>
+ 
+  <aside class="three columns">
+    <div class="panel">
+      <h4><%= number_to_currency(current_user.available_credit) %> <small>disponibles</small></h4>
+    </div>
+    <div class="panel">
+      <h5>Instrucciones</h5>
+      <p>En esta página puedes ver el total de acciones disponibles de cada equipo. Da click en <strong>Buy</strong> para comprar una acción. Tienes un límite de 20 acciones por equipo.</p>
+    </div>
+  </aside>
+ 
+</div>
+

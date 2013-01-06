@@ -20,7 +20,7 @@
 
   <aside class="four columns hide-for-small">
     <div class="panel">
-      <h5><%= link_to 'Rankings', rankings_path %></h5>
+      <h5><%= link_to 'Top Ten', rankings_path %></h5>
       <ul class="side-nav">
       <% @players.each_with_index do |player, index| %>
         <li><%= index + 1 %>. <%= player.username.nil? ? player.email : player.username %></li>

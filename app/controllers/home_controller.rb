@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 	def index
 		@announcements = Announcement.all
-		@players = User.order_by_portfolio
+		@players = User.top_ten
 	end
 end

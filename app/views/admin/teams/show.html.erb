@@ -1,46 +1,55 @@
+<%= link_to 'Edit', edit_admin_team_path(@team), class: 'button right' %>
 <h1><%= @team.name %></h1>
 
-<table class="twelve">
-	<thead>
-		<tr>
-			<td>Pos.</td>
-			<td>Pos. Rival</td>
-			<td>Fecha</td>
-			<td>Resultado</td>
-		</tr>
-	</thead>
-	<tbody>
-		<% @team.matches.each do |match| %>
-			<tr>
-				<td><%= match.position %></td>
-				<td><%= match.rival_position %></td>
-				<td><%= match.date.to_formatted_s(:long) %></td>
-				<td><%= match.result %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<dl class="tabs">
+  <dd class="active"><a href="#simple1">Schedule</a></dd>
+  <dd><a href="#simple2">Stocks</a></dd>
+</dl>
+<ul class="tabs-content">
+  <li class="active" id="simple1Tab">
+  	<table class="twelve">
+			<thead>
+				<tr>
+					<td>Pos.</td>
+					<td>Pos. Rival</td>
+					<td>Fecha</td>
+					<td>Resultado</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @team.matches.each do |match| %>
+					<tr>
+						<td><%= match.position %></td>
+						<td><%= match.rival_position %></td>
+						<td><%= match.date.to_formatted_s(:long) %></td>
+						<td><%= match.result %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+  </li>
+  <li id="simple2Tab">
+  	<table class="twelve">
+			<thead>
+				<tr>
+					<td>Id</td>
+					<td>Owner</td>
+					<td>Qty.</td>
+					<td>Last Update</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @team.stocks.each do |stock| %>
+					<tr>
+						<td><%= stock.id %></td>
+						<td><%= stock.user.email %></td>
+						<td><%= stock.quantity %></td>
+						<td><%= stock.updated_at %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+  </li>
+</ul>
 
-<table class="twelve">
-	<thead>
-		<tr>
-			<td>Id</td>
-			<td>Owner</td>
-			<td>Qty.</td>
-			<td>Last Update</td>
-		</tr>
-	</thead>
-	<tbody>
-		<% @team.stocks.each do |stock| %>
-			<tr>
-				<td><%= stock.id %></td>
-				<td><%= stock.user.email %></td>
-				<td><%= stock.quantity %></td>
-				<td><%= stock.updated_at %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
-
-<%= link_to 'Edit', edit_admin_team_path(@team) %> |
 <%= link_to 'Back', admin_teams_path %>

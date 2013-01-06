@@ -1,0 +1,29 @@
+<h3>Ventas</h3>
+<table class="twelve responsive">
+	<thead>
+		<tr>
+			<th>Equipo</th>
+			<th>Precio Compra</th>
+			<th>Precio Venta</th>
+			<th>Gain / Loss</th>
+			<th>Fecha</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @user.transactions.each do |transaction| %>
+		<tr>
+			<td><%= transaction.stock.team.name %></td>
+			<td><%= number_to_currency(transaction.initial_value) %></td>
+			<td><%= number_to_currency(transaction.final_value) %></td>
+			<td class="<%= gain_loss(transaction.roi) %>"><%= number_to_currency(transaction.roi) %></td>
+			<td><%= transaction.created_at.to_formatted_s(:long)  %></td>
+		</tr>
+		<% end %>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3"></td>
+			<td class="<%= gain_loss(@user.transaction_gains) %>"><%= number_to_currency(@user.transaction_gains) %></td>
+		</tr>
+	</tfoot>
+</table>

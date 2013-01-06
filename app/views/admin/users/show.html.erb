@@ -1,5 +1,55 @@
-<h1><%= @user.email %></h1>
-<h6>Credit: <%= @user.credit %></h6>
+<div class="row">
+	<div class="twelve columns">
+		<h3><%= @user.username.nil? ? "Inversionista" : @user.username %> <small><%= link_to 'Edit profile', edit_user_registration_path %></small></h3>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="three columns">
+		<!-- <li>
+			<div class="panel">
+				<h4><%#= @user.ranking %></h4>
+				<p><strong>Ranking</strong></p>
+			</div>
+		</li> -->
+		
+		<%= link_to 'https://en.gravatar.com/site/signup/', class: 'th' do %>
+			<%= gravatar_for @user, 220 %>
+		<% end %>
+		<h6><%= link_to 'Add avatar', 'https://en.gravatar.com/site/signup/' %></h6>
+		<hr>
+
+		<div class="panel">
+			<h4><%= number_to_currency(@user.available_credit) %> <small></small></h4>
+			<h4><small>Efectivo</small></h4>
+		</div>
+		<div class="panel">
+			<h4><%= number_to_currency(@user.total_portfolio_value) %></h4>
+			<h4><small>Valor Portafolio</small></h4>
+		</div>
+		<div class="panel">
+			<h4 class="<%= gain_loss(@user.total_return_percentage) %>"><%= number_to_percentage(@user.total_return_percentage) %></h4>
+			<h4><small>Rendimiento</small></h4>
+		</div>
+	</div>
+	
+	<div class="nine columns">
+		<dl class="tabs">
+		  <dd class="active"><a href="#portfolio">Acciones</a></dd>
+		  <dd><a href="#sales">Ventas</a></dd>
+		</dl>
+
+		<ul class="tabs-content">
+		  <li class="active" id="portfolioTab">
+		  	<%= render 'portfolio' %>
+		  </li>
+		  <li id="salesTab">
+		  	<%= render 'transactions' %>
+		  </li>
+		</ul>
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_admin_user_path(@user) %> |
 <%= link_to 'Back', admin_users_path %>

@@ -1,0 +1,45 @@
+<h3>Acciones</h3>
+<table class="twelve responsive">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th></th>
+			<th>Equipo</th>
+			<th>Valor Compra</th>
+			<th>Valor Actual</th>
+			<th>Total Compra</th>
+			<th>Total Actual</th>
+			<th>Gain / Loss</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @user.stocks.each do |stock| %>
+			<% if stock.quantity > 0 %>
+			<tr>
+				<td><%= stock.quantity %></td>
+		    <td><div class="icon <%= stock.team.name.parameterize %>"></div></td>
+				<td><%= stock.team.name %></td>
+				<td><%= number_to_currency(stock.price) %></td>
+				<td><%= number_to_currency(stock.team.current_value) %></td>
+				<td><%= number_to_currency(stock.total_purchase_value) %></td>
+				<td><%= number_to_currency(stock.total_current_value) %></td>
+				<td class="<%= gain_loss(stock.investment_return) %>"><%= number_to_currency(stock.investment_return) %></td>
+				<td>
+					<div class="sell">
+						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button' unless stock.team.match_right_now? %>
+					</div>
+				</td>
+			</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="6"></td>
+			<td><%= number_to_currency(@user.current_portfolio_value) %></td>
+			<td class="<%= gain_loss(@user.current_portfolio_gains) %>"><%= number_to_currency(@user.current_portfolio_gains) %></td>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>

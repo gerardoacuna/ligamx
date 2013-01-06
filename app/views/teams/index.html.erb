@@ -30,7 +30,7 @@
           <% unless team.match_right_now? %>
             <td>
               <div class="buy">
-                <%= button_to 'Buy', stocks_path(team_id: team), class: 'button', id: 'buy_button' %>    
+                <%= button_to 'Buy', stocks_path(team_id: team), class: 'button', id: 'buy_button', form: { "data-team" => team.name }, disable_with: 'Buying...' %>    
               </div>
             </td>
           <% else %>

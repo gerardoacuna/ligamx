@@ -27,7 +27,7 @@
 				<td class="<%= gain_loss(stock.investment_return) %>"><%= number_to_currency(stock.investment_return) %></td>
 				<td>
 					<div class="sell">
-						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button' unless stock.team.match_right_now? %>
+						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button', form: { "data-team" => stock.team.name }, disable_with: 'Selling...' unless stock.team.match_right_now? %>
 					</div>
 				</td>
 			</tr>

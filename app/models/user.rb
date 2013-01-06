@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   end
 
   def self.top_ten
-    all.sort { |a,b| b.total_portfolio_value <=> a.total_portfolio_value}.first(10)
+    order_by_portfolio.first(10)
   end
 
   #TODO Get user ranking.

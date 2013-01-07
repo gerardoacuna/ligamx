@@ -13,49 +13,32 @@
   
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "application" %>
+	<%= bugherd_include_tag "gbvl3iqjbjvotksbshxhug" %>
   <%= csrf_meta_tags %>
-
-  <script type='text/javascript'>
-	(function (d, t) {
-	  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-	  bh.type = 'text/javascript';
-	  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=gbvl3iqjbjvotksbshxhug';
-	  s.parentNode.insertBefore(bh, s);
-	  })(document, 'script');
-	</script>
 
   <%= render 'layouts/mixpanel' if Rails.env.staging? || Rails.env.production? %>
 
 </head>
 
 <body>
+
+	<%= render 'layouts/navigation' if user_signed_in? %>
+
 	<div class="row">
 		<div class="twelve columns">
-			<%= render 'layouts/navigation' if user_signed_in? %>
 			<%= render 'layouts/messages' %>
 			<%= yield %>
 		</div>
 	</div>
 
-	<footer class="row">
-	  <div class="twelve columns">
-	    <hr />
-	    <div class="row">
-	      <div class="six columns">
-	        <p>&copy; Ijooooo.</p>
-	      </div>
-	        <a href="http://mixpanel.com/f/partner" class="right">
-	        	<img src="http://mixpanel.com/site_media/images/partner/badge_blue.png" alt="Real Time Web Analytics" />
-	        </a>
-	      </div>
-	    </div>
-	  </div> 
-	</footer>
+	<%= render 'layouts/footer' %>
+	
 </body>
 
 <% if user_signed_in? %>
 	<%= javascript_tag do %>
 	  window.user = "<%=j current_user.email %>";
+	  window.username = "<%=j current_user.username %>"
 	<% end %>
 <% end %>
 

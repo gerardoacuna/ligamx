@@ -6,35 +6,35 @@
 
 
 <div class="row">
-	<div class="three columns">
-		<!-- <li>
-			<div class="panel">
-				<h4><%#= current_user.ranking %></h4>
-				<p><strong>Ranking</strong></p>
-			</div>
-		</li> -->
-		
+	<div class="three columns">		
 		<%= link_to 'https://en.gravatar.com/site/signup/', class: 'th' do %>
 			<%= gravatar_for current_user, 220 %>
 		<% end %>
 		<h6><%= link_to 'Add avatar', 'https://en.gravatar.com/site/signup/' %></h6>
 		<hr>
-
-		<div class="panel">
-			<h4><%= number_to_currency(current_user.available_credit) %> <small></small></h4>
-			<h4><small>Efectivo</small></h4>
-		</div>
-		<div class="panel">
-			<h4><%= number_to_currency(current_user.total_portfolio_value) %></h4>
-			<h4><small>Valor Portafolio</small></h4>
-		</div>
-		<div class="panel">
-			<h4 class="<%= gain_loss(current_user.total_return_percentage) %>"><%= number_to_percentage(current_user.total_return_percentage) %></h4>
-			<h4><small>Rendimiento</small></h4>
-		</div>
 	</div>
 	
 	<div class="nine columns">
+		<ul class="block-grid three-up">
+			<li>
+				<div class="panel stats">
+					<h3><%= number_to_currency(current_user.available_credit) %></h3>
+					<h4><small>Efectivo</small></h4>
+				</div>
+			</li>
+			<li>
+				<div class="panel stats">
+					<h3><%= number_to_currency(current_user.total_portfolio_value) %></h3>
+					<h4><small>Valor Portafolio</small></h4>
+				</div>
+			</li>
+			<li>
+				<div class="panel stats">
+					<h3 class="<%= gain_loss(current_user.total_return_percentage) %> no-arrow"><%= number_to_percentage(current_user.total_return_percentage) %></h3>
+					<h4><small>Rendimiento</small></h4>
+				</div>
+			</li>
+		</ul>
 		<dl class="tabs">
 		  <dd class="active"><a href="#portfolio">Acciones</a></dd>
 		  <dd><a href="#sales">Ventas</a></dd>

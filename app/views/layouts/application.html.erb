@@ -13,8 +13,17 @@
   
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "application" %>
-	<%= bugherd_include_tag "gbvl3iqjbjvotksbshxhug" %>
+	<%#= bugherd_include_tag %>
   <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+	  (function (d, t) {
+	    var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+	    bh.type = "text/javascript";
+	    bh.src = "//www.bugherd.com/sidebarv2.js?apikey=gbvl3iqjbjvotksbshxhug";
+	    s.parentNode.insertBefore(bh, s);
+	    })(document, "script");
+  </script>
 
   <%= render 'layouts/mixpanel' if Rails.env.staging? || Rails.env.production? %>
 
@@ -32,7 +41,7 @@
 	</div>
 
 	<%= render 'layouts/footer' %>
-	
+
 </body>
 
 <% if user_signed_in? %>

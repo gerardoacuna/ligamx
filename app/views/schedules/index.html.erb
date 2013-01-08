@@ -23,11 +23,11 @@
             <% matches.each do |match| %>
               <tr>
                 <td><%= match.date.strftime("%H:%M") %></td>
-                <td><%= match.team1.name %></td>
+                <td><%= link_to match.team1.name, match.team1 %></td>
                 <td><div class="icon <%= match.team1.name.parameterize %>"></div></td>
                 <td>vs.</td>
                 <td><div class="icon <%= match.team2.name.parameterize %>"></div></td>
-                <td><%= match.team2.name %></td>
+                <td><%= link_to match.team2.name, match.team2 %></td>
               </tr>
             <% end %>
           </tbody>

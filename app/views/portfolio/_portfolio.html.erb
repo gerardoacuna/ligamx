@@ -19,7 +19,7 @@
 			<tr>
 				<td><%= stock.quantity %></td>
 		    <td><div class="icon <%= stock.team.name.parameterize %>"></div></td>
-				<td><%= stock.team.name %></td>
+				<td><%= link_to stock.team.name, stock.team %></td>
 				<td><%= number_to_currency(stock.price) %></td>
 				<td><%= number_to_currency(stock.team.current_value) %></td>
 				<td><%= number_to_currency(stock.total_purchase_value) %></td>

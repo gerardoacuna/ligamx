@@ -1,0 +1,39 @@
+<% @schedules.each do |schedule| %>
+  <h1><%= schedule.name %></h1>
+
+  <dl class="tabs">
+    <% schedule.weeks.each_with_index do |week, i| %>
+      <%= content_tag :dd, class: set_active_to_first(week, i) do %>
+        <a href="#week<%= week.number %>"><%= week.number %></a>
+      <% end %>
+    <% end %>
+  </dl>
+
+  <ul class="tabs-content">
+  <% schedule.weeks.each_with_index do |week, i| %>
+    <%= content_tag :li, class: set_active_to_first(week, i), id: "week#{week.number}Tab" do %>
+      <% week.matchups_by_day.each do |day, matches| %>
+        <table class="twelve">
+          <thead>
+            <tr>
+              <th colspan="6" class="centered-text"><%= day %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% matches.each do |match| %>
+              <tr>
+                <td><%= match.date.strftime("%H:%M") %></td>
+                <td><%= match.team1.name %></td>
+                <td><div class="icon <%= match.team1.name.parameterize %>"></div></td>
+                <td>vs.</td>
+                <td><div class="icon <%= match.team2.name.parameterize %>"></div></td>
+                <td><%= match.team2.name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <% end %>
+  <% end %>
+  </ul>
+<% end %>

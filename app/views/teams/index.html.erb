@@ -23,7 +23,7 @@
       <tr>
         <td><%= team.position %></td>
         <td><div class="icon <%= team.name.parameterize %>"></div></td>
-        <td><%= team.name %></td>
+        <td><%= link_to team.name, team %></td>
         <td><%= team.stocks_available %></td>
         <td><%= number_to_currency(team.current_value) %></td>
         <% if team.can_buy_stock?(current_user) || team.match_right_now? %>

@@ -1,15 +1,15 @@
 <div class="row">
 	<div class="four columns">
-		<%= f.label :team1_id %>
+		<%= f.label :team1_id, "Local" %>
 		<%= f.select :team1_id, Team.all.map{|u| [u.name,u.id]} %>
 	</div>
 	<div class="four columns">
-		<%= f.label :team2_id %>
+		<%= f.label :team2_id, "Visitante" %>
 		<%= f.select :team2_id, Team.all.map{|u| [u.name,u.id]} %>
 	</div>
 	<div class="four columns">
 		<%= f.label :date %>
-		<%= f.datetime_select :date, html: { style: 'display: inline-block; width: 150px;'} %>
+		<%= f.datetime_select :date %>
 	</div>
 </div>
 <hr>

@@ -1,8 +1,24 @@
+# == Schema Information
+#
+# Table name: teams
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  position   :integer
+#
+
 class Team < ActiveRecord::Base
   attr_accessible :name, :position, :matches_attributes
 
   has_many :stocks
   has_many :matches, order: "date"
+
+  has_many :matchups, foreign_key: "team1_id", dependent: :destroy
+  has_many :home_matchups, through: :matchups, source: :team2
+  has_many :reverse_matchups, foreign_key: "team2_id", class_name:  "Matchup", dependent:   :destroy
+  has_many :away_matchups, through: :reverse_matchups, source: :team1
 
   accepts_nested_attributes_for :matches, allow_destroy: true
 

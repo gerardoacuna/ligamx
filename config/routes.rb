@@ -16,6 +16,7 @@ Ligamx::Application.routes.draw do
     resources :users
     resources :announcements
     resources :stocks
+    resources :schedules
   end
 
   root to: "home#index"

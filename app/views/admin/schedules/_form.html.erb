@@ -1,0 +1,15 @@
+<%= nested_form_for [:admin, @schedule] do |f| %>
+
+	<%= f.label :name %>
+  <%= f.text_field :name %>
+  <hr>
+  <div class="row">
+  	<div class="six columns centered">
+			<%= f.fields_for :weeks %>
+			<%= f.link_to_add "Add week", :weeks, class: "button tiny" %>
+  	</div>
+  </div>
+	<hr>
+	<%= f.submit "Save", class: "button" %>
+
+<% end %>

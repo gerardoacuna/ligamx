@@ -1,6 +1,5 @@
 <h1><%= @schedule.name %></h1>
 
-
 <dl class="tabs">
 	<% @schedule.weeks.each_with_index do |week, i| %>
 		<%= content_tag :dd, class: set_active_to_first(week, i) do %>

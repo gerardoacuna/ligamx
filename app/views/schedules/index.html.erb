@@ -3,7 +3,7 @@
 
   <dl class="tabs">
     <% schedule.weeks.each_with_index do |week, i| %>
-      <%= content_tag :dd, class: set_active_to_first(week, i) do %>
+      <%= content_tag :dd, class: set_active_to_first(i) do %>
         <a href="#week<%= week.number %>"><%= week.number %></a>
       <% end %>
     <% end %>
@@ -11,7 +11,7 @@
 
   <ul class="tabs-content">
   <% schedule.weeks.each_with_index do |week, i| %>
-    <%= content_tag :li, class: set_active_to_first(week, i), id: "week#{week.number}Tab" do %>
+    <%= content_tag :li, class: set_active_to_first(i), id: "week#{week.number}Tab" do %>
       <% week.matchups_by_day.each do |day, matches| %>
         <table class="twelve">
           <thead>

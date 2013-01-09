@@ -1,24 +1,35 @@
 <h1><%= @team.name %></h1>
 
-<table class="twelve">
-	<thead>
-		<tr>
-			<th>Fecha</th>
-			<th colspan="2">Local</th>
-			<th></th>
-			<th colspan="2">Visitante</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% Matchup.all_team_matchups(@team.id).each do |match| %>
-			<tr>
-				<td><%= match.date.to_formatted_s(:long) %></td>
-				<td><%= match.team1.name %></td>
-				<td><div class="icon <%= match.team1.name.parameterize %>"></div></td>
-				<td>vs.</td>
-				<td><div class="icon <%= match.team2.name.parameterize %>"></div></td>
-				<td><%= match.team2.name %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<%= content_tag :div, "", id: "perfomance_chart", data: {stocks: @team.stocks} %>
+
+<div class="row">
+	<div class="eight columns">
+		<table class="twelve">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th colspan="2">Local</th>
+					<th></th>
+					<th colspan="2">Visitante</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% Matchup.all_team_matchups(@team.id).each do |match| %>
+					<tr>
+						<td><%= match.date.to_formatted_s(:long) %></td>
+						<td><%= match.team1.name %></td>
+						<td><div class="icon <%= match.team1.name.parameterize %>"></div></td>
+						<td>vs.</td>
+						<td><div class="icon <%= match.team2.name.parameterize %>"></div></td>
+						<td><%= match.team2.name %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="four columns">
+		<h1><%= number_to_currency(@team.current_value) %></h1>
+		<h5>Valor Actual</h5>
+    <%= button_to 'Buy', stocks_path(team_id: @team.id), class: 'button', id: 'buy_button', form: { "data-team" => @team.name }, disable_with: 'Buying...' %>
+	</div>
+</div>

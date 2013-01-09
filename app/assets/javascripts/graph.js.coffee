@@ -10,6 +10,6 @@ jQuery ->
     xkey: 'updated_at'
     ykeys: ['price']
     xLabels: "day"
-    labels: ['Precio']
+    labels: ['Compra']
     smooth: false
     preUnits: '$'

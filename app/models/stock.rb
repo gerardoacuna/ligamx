@@ -39,7 +39,7 @@ class Stock < ActiveRecord::Base
     if quantity > 0
       total_current_value - total_purchase_value
     else
-      0
+      return 0
     end
   end
 

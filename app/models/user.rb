@@ -66,7 +66,8 @@ class User < ActiveRecord::Base
   end
 
   def self.order_by_portfolio
-    all.sort { |a,b| b.total_portfolio_value <=> a.total_portfolio_value}
+    users = all
+    users = users.sort { |a,b| b.total_portfolio_value <=> a.total_portfolio_value}
   end
 
   def self.top_ten
@@ -113,7 +114,6 @@ class User < ActiveRecord::Base
   def total_credit_earned
     transactions.to_a.sum { |transaction| transaction.final_value }
   end
-
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

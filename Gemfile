@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
 
 gem 'pg'
 gem 'nested_form'
@@ -8,6 +8,7 @@ gem 'newrelic_rpm'
 gem 'devise'
 gem 'cancan'
 gem 'rolify'
+gem 'google-analytics-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

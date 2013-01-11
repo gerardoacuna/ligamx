@@ -26,6 +26,9 @@ Ligamx::Application.configure do
   # Mixpanel API
   MIXPANEL_TOKEN = "cfd8bfc4d427959323dceb2b1fc6b44e"
 
+  # Google Analytics code.
+  GA.tracker = "UA-37521614-1"
+
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx

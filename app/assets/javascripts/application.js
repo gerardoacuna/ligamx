@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bugherd
 //= require raphael
 //= require morris
 //= require foundation

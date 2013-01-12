@@ -11,11 +11,12 @@
 	
 	<title><%= content_for?(:title) ? yield(:title) : "Bolsa Mexicana de Fútbol" %></title>
   
+  <%= tag :meta, name: "user_email", :content => current_user.email if user_signed_in? %>
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-  <%= render 'layouts/mixpanel' if Rails.env.staging? || Rails.env.production? %>
+  <%= render 'layouts/mixpanel' %>
 
 </head>
 
@@ -33,13 +34,6 @@
 	<%= render 'layouts/footer' %>
 
 </body>
-
-<% if user_signed_in? %>
-	<%= javascript_tag do %>
-	  window.user = "<%=j current_user.email %>";
-	  window.username = "<%=j current_user.username %>"
-	<% end %>
-<% end %>
 
   <%= analytics_init if Rails.env.production? %>
 </html>

@@ -17,6 +17,7 @@ group :assets do
   gem 'zurb-foundation'
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-ui-rails'
+  gem 'paloma'
 end
 
 gem 'jquery-rails'

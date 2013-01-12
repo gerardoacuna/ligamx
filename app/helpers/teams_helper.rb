@@ -10,7 +10,7 @@ module TeamsHelper
 		@team.stocks do |stock|
 			{
 				updated_at: stock.updated_at,
-				price: number_to_currency(stock.price)
+				price: stock.price
 			}
 		end
 	end

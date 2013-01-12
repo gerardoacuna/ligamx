@@ -5,6 +5,8 @@
 .icon {
 	width: 25px;
 	height: 25px;
+	display: inline-block;
+	margin: 0 5px;
 	background-image: image-url('sprite_mexico_chico.gif');
 	&.monterrey { background-position: 0px -450px; }
 	&.america { background-position: 0px -125px; }

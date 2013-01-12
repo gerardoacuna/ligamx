@@ -17,6 +17,9 @@ Ligamx::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  # Mixpanel API key
+  MIXPANEL_TOKEN = "0b0f9ea18a538bb30dc3b636a97d9601"
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

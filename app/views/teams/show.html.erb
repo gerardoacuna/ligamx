@@ -1,18 +1,60 @@
-<h1><%= @team.name %></h1>
+<h3><div class="icon <%= @team.name.parameterize %>"></div><%= @team.name %></h3>
 
-<!-- <div class="row">
-	<div class="four columns">
-		<h1><%#= number_to_currency(@team.current_value) %></h1>
-		<h5>Valor Actual</h5>
-	</div>
-	<div class="eight columns">
-		<h4>Compra-Venta</h4>
-		<%#= content_tag :div, "", id: "perfomance_chart", data: { stocks: team_chart_data } %>
-	</div>
-</div> -->
+<dl class="tabs contained">
+  <dd class="active"><a href="#data">Stats</a></dd>
+  <dd class="hide-for-small"><a href="#schedule">Schedule</a></dd>
+</dl>
 
-<div class="row">
-	<div class="eight columns">
+<ul class="tabs-content contained">
+  <li class="active" id="dataTab">
+  	<div class="row">
+			<div class="five columns">
+				<ul class="block-grid two-up">
+					<li>
+						<div class="panel centered-text">
+							<h1><%= number_to_currency(@team.current_value) %></h1>
+							<h5>Valor Actual</h5>
+						</div>
+					</li>
+					<li>
+						<div class="panel centered-text">
+							<h4>Prox.</h4>
+							<h5>Record</h5>
+						</div>
+					</li>
+					<li>
+						<div class="panel centered-text">
+							<h4>Prox.</h4>
+							<h5>Record Local</h5>
+						</div>
+					</li>
+					<li>
+						<div class="panel centered-text">
+							<h4>Prox.</h4>
+							<h5>Record Visitante</h5>
+						</div>
+					</li>
+					<li>
+						<div class="panel centered-text">
+							<h4>Prox.</h4>
+							<h5>Goles a Favor</h5>
+						</div>
+					</li>
+					<li>
+						<div class="panel centered-text">
+							<h4>Prox.</h4>
+							<h5>Goles en Contra</h5>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="seven columns">
+				<h4>Compra-Venta</h4>
+				<%= content_tag :div, "", id: "perfomance_chart", data: { stocks: team_chart_data } %>
+			</div>
+		</div>
+  </li>
+  <li id="scheduleTab">
 		<table class="twelve">
 			<thead>
 				<tr>
@@ -26,16 +68,14 @@
 				<% Matchup.all_team_matchups(@team.id).each do |match| %>
 					<tr>
 						<td><%= match.date.to_formatted_s(:long) %></td>
-						<td><%= match.team1.name %></td>
+						<td><%= link_to match.team1.name, match.team1 %></td>
 						<td><div class="icon <%= match.team1.name.parameterize %>"></div></td>
 						<td>vs.</td>
 						<td><div class="icon <%= match.team2.name.parameterize %>"></div></td>
-						<td><%= match.team2.name %></td>
+						<td><%= link_to match.team2.name, match.team2 %></td>
 					</tr>
 				<% end %>
 			</tbody>
 		</table>
-	</div>
-	<div class="four columns">
-	</div>
-</div>
+  </li>
+</ul>

@@ -32,7 +32,7 @@ class Matchup < ActiveRecord::Base
  #  validate :week_does_not_exist_team2_reversed
 
   def self.all_team_matchups(team)
-    where("team1_id = :team_id OR team2_id = :team_id", {team_id: team})
+    where("team1_id = :team_id OR team2_id = :team_id", { team_id: team })
   end
 
   # private

@@ -14,10 +14,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% current_user.stocks.each do |stock| %>
-			<% if stock.quantity > 0 %>
+		<% Stock.grouped_by_team_and_price(current_user).each do |stock| %>
 			<tr>
-				<td><%= stock.quantity %></td>
+				<td><%= stock.total_quantity %></td>
 		    <td><div class="icon <%= stock.team.name.parameterize %>"></div></td>
 				<td><%= link_to stock.team.name, stock.team %></td>
 				<td><%= number_to_currency(stock.price) %></td>
@@ -31,7 +30,6 @@
 					</div>
 				</td>
 			</tr>
-			<% end %>
 		<% end %>
 	</tbody>
 	<tfoot>

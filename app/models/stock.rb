@@ -18,41 +18,56 @@ class Stock < ActiveRecord::Base
   belongs_to :team
   has_many :transactions
 
+  def self.grouped_by_team_and_price(user)
+    stocks = joins(:teams)
+    stocks = where("quantity > 0 AND user_id = :user", { user: user })
+    stocks = stocks.select("team_id, price, max(id) as id, sum(quantity) as total_quantity")
+    stocks = stocks.group('team_id, price')
+  end
+
+  def get_ids
+    
+  end
+
+  def total_stock_quantity
+    self.total_quantity.to_i
+  end
+
   def total_current_value
-  	team.current_value * quantity
+  	team.current_value * total_stock_quantity
   end
 
   def total_purchase_value
-    price * quantity
+    price * total_stock_quantity
   end
 
-  def purchase_history
-    if quantity == 0
-      total = price
-    else
-      total = price * quantity
-    end
-    total
+  # def purchase_history
+  #   if quantity == 0
+  #     total = price
+  #   else
+  #     total = price * quantity
+  #   end
+  #   total
+  # end
+
+  def investment_return
+    total_current_value - total_purchase_value
   end
 
-  def portfolio_return
-    if quantity > 0
-      total_current_value - total_purchase_value
-    else
-      return 0
-    end
-  end
+  # def portfolio_return
+  #   if quantity > 0
+  #     investment_return
+  #   else
+  #     return 0
+  #   end
+  # end
 
   def transaction_return
     team.current_value - price
   end
 
-  def investment_return
-  	total_current_value - (price * quantity)
-  end
-
-  def investment_return_percentage
-  	100 * (total_current_value - total_purchase_value) / total_purchase_value
-  end
+  # def investment_return_percentage
+  # 	100 * (total_current_value - total_purchase_value) / total_purchase_value
+  # end
 
 end

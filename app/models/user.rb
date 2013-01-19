@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :username, :presence => true
+  validates :username, presence: true
 
   has_many :stocks
   has_many :transactions
@@ -38,12 +38,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   def buy_stock(team_id, team_value)
-    stock = stocks.find_by_team_id_and_price(team_id, team_value)
-  	if stock
-      stock.quantity += 1
-  	else
-  		stock = stocks.build(team_id: team_id, price: team_value)
-  	end
+		stock = stocks.build(team_id: team_id, price: team_value)
   	stock
   end
 
@@ -75,9 +70,9 @@ class User < ActiveRecord::Base
   end
 
   #TODO Get user ranking.
-  def rank
+  # def rank
     # self.order_by_portfolio
-  end
+  # end
 
   def total_return_percentage
     100 * (total_portfolio_value - initial_available_credit) / initial_available_credit
@@ -92,20 +87,28 @@ class User < ActiveRecord::Base
   end
 
   def available_credit
-    initial_available_credit - total_credit_spent + total_credit_earned - current_portfolio_assets
+    initial_available_credit - total_credit_spent + total_credit_earned - original_portfolio_value
   end
 
-  def current_portfolio_assets
-    stocks.to_a.sum { |stock| stock.total_purchase_value }
-  end
+  # def current_portfolio_assets
+  #   stocks.to_a.sum { |stock| stock.total_purchase_value }
+  # end
 
   def current_portfolio_value
-    stocks.to_a.sum { |stock| stock.total_current_value }
+    stocks.to_a.sum { |stock| stock.quantity * stock.team.current_value }
+  end
+
+  def original_portfolio_value
+    stocks.to_a.sum { |stock| stock.quantity * stock.price }
   end
 
   def current_portfolio_gains
-    stocks.to_a.sum { |stock| stock.portfolio_return }
+    current_portfolio_value - original_portfolio_value
   end
+
+  # def total_stocks
+  #   stocks.to_a.sum { |stock| stock.quantity }
+  # end
 
   def total_credit_spent
     transactions.to_a.sum { |transaction| transaction.initial_value }

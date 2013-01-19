@@ -9,8 +9,8 @@ module TeamsHelper
 	def team_chart_data
 		@team.stocks do |stock|
 			{
-				updated_at: stock.updated_at,
-				price: stock.price
+				created_at: stock.created_at,
+				sell_price: stock.price
 			}
 		end
 	end

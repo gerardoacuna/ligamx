@@ -17,7 +17,6 @@
   <%= csrf_meta_tags %>
 
   <%= render 'layouts/mixpanel' %>
-
 </head>
 
 <body>
@@ -32,8 +31,6 @@
 	</div>
 
 	<%= render 'layouts/footer' %>
-
-</body>
-
   <%= analytics_init if Rails.env.production? %>
+</body>
 </html>

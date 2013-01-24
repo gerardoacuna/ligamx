@@ -14,12 +14,11 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @user.stocks.each do |stock| %>
-			<% if stock.quantity > 0 %>
+		<% Stock.grouped_by_team_and_price(@user).each do |stock| %>
 			<tr>
-				<td><%= stock.quantity %></td>
+				<td><%= stock.total_quantity %></td>
 		    <td><div class="icon <%= stock.team.name.parameterize %>"></div></td>
-				<td><%= stock.team.name %></td>
+				<td><%= link_to stock.team.name, stock.team %></td>
 				<td><%= number_to_currency(stock.price) %></td>
 				<td><%= number_to_currency(stock.team.current_value) %></td>
 				<td><%= number_to_currency(stock.total_purchase_value) %></td>
@@ -27,11 +26,10 @@
 				<td class="<%= gain_loss(stock.investment_return) %>"><%= number_to_currency(stock.investment_return) %></td>
 				<td>
 					<div class="sell">
-						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button' unless stock.team.match_right_now? %>
+						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button', form: { "data-team" => stock.team.name }, disable_with: 'Selling...' unless stock.team.match_right_now? %>
 					</div>
 				</td>
 			</tr>
-			<% end %>
 		<% end %>
 	</tbody>
 	<tfoot>

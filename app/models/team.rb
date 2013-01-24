@@ -50,7 +50,7 @@ class Team < ActiveRecord::Base
   end
 
   def initial_stocks_available
-    return 170
+    return 120
   end
 
   def initial_stock_value

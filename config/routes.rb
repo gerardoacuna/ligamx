@@ -4,9 +4,12 @@ Ligamx::Application.routes.draw do
 
   resources :teams, only: [:index, :show]
   resources :stocks, only: [:create, :update]
-  resources :transactions
+  resources :transactions do
+    collection { post :accept_bid }
+  end
   resources :rankings, only: :index
   resources :schedules, only: [:index, :show]
+  resources :bids
 
   match "portfolio", to: 'portfolio#index', as: 'portfolio'
   match "market", to: 'teams#index', as: 'market'

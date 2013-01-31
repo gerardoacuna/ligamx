@@ -18,6 +18,9 @@ Ligamx::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
+  # Mixpanel API key
+  MIXPANEL_TOKEN = "0b0f9ea18a538bb30dc3b636a97d9601"
+
   # Raise exceptions instead of rendering exception templates
   config.action_dispatch.show_exceptions = false
 

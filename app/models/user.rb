@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
 
+  has_many :bids
   has_many :stocks
   has_many :transactions
 
@@ -53,6 +54,24 @@ class User < ActiveRecord::Base
       return false
     end
     transaction
+    stock
+  end
+
+  def accept_bid(stock_id)
+    stock = stocks.find(stock_id)
+    transaction = transactions.build(stock_id: stock_id)
+    bid = stock.team.bids.first
+    new_stock = stocks.create(team_id: stock.team.id, price: bid.price, user_id: bid.user_id, quantity: 1)
+    if stock.quantity > 0
+      stock.quantity -= 1
+      transaction.update_attributes(initial_value: stock.price, final_value: stock.team.bids.first.price, roi: stock.transaction_return_on_bid)
+      bid.update_attributes(accepted: true)
+    else
+      errors.add(:base, 'You can not sell this stock.')
+      return false
+    end
+    transaction
+    new_stock
     stock
   end
 
@@ -90,10 +109,6 @@ class User < ActiveRecord::Base
     initial_available_credit - total_credit_spent + total_credit_earned - original_portfolio_value
   end
 
-  # def current_portfolio_assets
-  #   stocks.to_a.sum { |stock| stock.total_purchase_value }
-  # end
-
   def current_portfolio_value
     stocks.to_a.sum { |stock| stock.quantity * stock.team.current_value }
   end
@@ -105,10 +120,6 @@ class User < ActiveRecord::Base
   def current_portfolio_gains
     current_portfolio_value - original_portfolio_value
   end
-
-  # def total_stocks
-  #   stocks.to_a.sum { |stock| stock.quantity }
-  # end
 
   def total_credit_spent
     transactions.to_a.sum { |transaction| transaction.initial_value }

@@ -1,0 +1,22 @@
+<h3>Bids</h3>
+<table class="twelve responsive">
+	<thead>
+		<tr>
+			<th>Equipo</th>
+			<th></th>
+			<th>Valor Actual</th>
+			<th>Valor Propuesto</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @bids.each do |bid| %>
+			<tr>
+				<td><%= bid.team.name %></td>
+		    <td><div class="icon <%= bid.team.name.parameterize %>"></div></td>
+		    <td><%= number_to_currency(bid.team.current_value) %></td>
+				<td><%= number_to_currency(bid.price) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

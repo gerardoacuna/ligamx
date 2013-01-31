@@ -11,10 +11,11 @@
 			<th>Total Actual</th>
 			<th>Gain / Loss</th>
 			<th></th>
+			<th>Bids</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% Stock.grouped_by_team_and_price(current_user).each do |stock| %>
+		<% @stocks.each do |stock| %>
 			<tr>
 				<td><%= stock.total_quantity %></td>
 		    <td><div class="icon <%= stock.team.name.parameterize %>"></div></td>
@@ -28,6 +29,11 @@
 					<div class="sell">
 						<%= button_to "Sell", transactions_path(stock_id: stock), class: 'button', id: 'sell_button', form: { "data-team" => stock.team.name }, disable_with: 'Selling...' unless stock.team.match_right_now? %>
 					</div>
+				</td>
+				<td>
+					<%= button_to "Sell for #{number_to_currency(stock.team.bids.first.try(:price))}",
+								accept_bid_transactions_path(stock_id: stock), class: 'button', disable_with: 
+								'Selling...' unless stock.team.match_right_now? || stock.team.bids.first.nil? %>
 				</td>
 			</tr>
 		<% end %>

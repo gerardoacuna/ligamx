@@ -12,6 +12,7 @@
 class Team < ActiveRecord::Base
   attr_accessible :name, :position, :matches_attributes
 
+  has_many :bids
   has_many :stocks
   has_many :matches, order: "date"
 

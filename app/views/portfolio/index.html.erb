@@ -37,11 +37,15 @@
 		<dl class="tabs">
 		  <dd class="active"><a href="#portfolio">Acciones</a></dd>
 		  <dd><a href="#sales">Ventas</a></dd>
+		  <dd><a href="#bids">Bids</a></dd>
 		</dl>
 
 		<ul class="tabs-content">
 		  <li class="active" id="portfolioTab">
 		  	<%= render 'portfolio' %>
+		  </li>
+		  <li id="bidsTab">
+		  	<%= render 'bids' %>
 		  </li>
 		  <li id="salesTab">
 		  	<%= render 'transactions' %>

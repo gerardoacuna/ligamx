@@ -25,10 +25,6 @@ class Stock < ActiveRecord::Base
     stocks = stocks.group('team_id, price')
   end
 
-  def get_ids
-    
-  end
-
   def total_stock_quantity
     self.total_quantity.to_i
   end
@@ -41,33 +37,16 @@ class Stock < ActiveRecord::Base
     price * total_stock_quantity
   end
 
-  # def purchase_history
-  #   if quantity == 0
-  #     total = price
-  #   else
-  #     total = price * quantity
-  #   end
-  #   total
-  # end
-
   def investment_return
     total_current_value - total_purchase_value
   end
-
-  # def portfolio_return
-  #   if quantity > 0
-  #     investment_return
-  #   else
-  #     return 0
-  #   end
-  # end
 
   def transaction_return
     team.current_value - price
   end
 
-  # def investment_return_percentage
-  # 	100 * (total_current_value - total_purchase_value) / total_purchase_value
-  # end
+  def transaction_return_on_bid
+    team.bids.first.price - price
+  end
 
 end

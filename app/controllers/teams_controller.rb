@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   def index
     @teams = Team.order("position")
+    @bid = Bid.new(params[:bid])
 
     respond_to do |format|
       format.html

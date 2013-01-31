@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     stock = stocks.find(stock_id)
     transaction = transactions.build(stock_id: stock_id)
     bid = stock.team.bids.first
-    new_stock = stocks.create(team_id: stock.team.id, price: bid.price, user_id: bid.user_id, quantity: 1)
+    new_stock = Stock.create(team_id: stock.team.id, price: bid.price, user_id: bid.user_id, quantity: 1)
     if stock.quantity > 0
       stock.quantity -= 1
       transaction.update_attributes(initial_value: stock.price, final_value: stock.team.bids.first.price, roi: stock.transaction_return_on_bid)

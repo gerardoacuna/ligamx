@@ -6,5 +6,5 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :team
 
-  default_scope where("accepted = false").order("created_at ASC")
+  default_scope where("accepted = false").order("price DESC, created_at ASC")
 end

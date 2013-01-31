@@ -12,7 +12,7 @@
 #
 
 class Stock < ActiveRecord::Base
-  attr_accessible :team_id, :quantity, :price
+  attr_accessible :user_id, :team_id, :quantity, :price
 
   belongs_to :user
   belongs_to :team

@@ -88,10 +88,9 @@ class User < ActiveRecord::Base
     order_by_portfolio.first(10)
   end
 
-  #TODO Get user ranking.
-  # def rank
-    # self.order_by_portfolio
-  # end
+  def credit_spent_on_bids
+    bids.to_a.sum { |bid| bid.price }
+  end
 
   def total_return_percentage
     100 * (total_portfolio_value - initial_available_credit) / initial_available_credit
@@ -106,7 +105,7 @@ class User < ActiveRecord::Base
   end
 
   def available_credit
-    initial_available_credit - total_credit_spent + total_credit_earned - original_portfolio_value
+    initial_available_credit - total_credit_spent + total_credit_earned - original_portfolio_value - credit_spent_on_bids
   end
 
   def current_portfolio_value

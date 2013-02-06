@@ -6,9 +6,19 @@ class BidsController < ApplicationController
   def create
   	@bid = Bid.new(params[:bid])
   	if @bid.save
-  		redirect_to market_path, notice: "You made a bid."
+      flash[:notice] = "Your bid was successfully placed."
+  		redirect_to market_path
   	else
   		render action: "new"
   	end
+  end
+
+  def update
+    @bid = Bid.find(params[:id])
+    if @bid.update_attributes(params[:bid])
+      redirect_to portfolio_path, notice: 'Bid was successfully cancelled.'
+    else
+      render "new"
+    end
   end
 end

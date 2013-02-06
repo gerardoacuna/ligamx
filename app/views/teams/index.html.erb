@@ -6,7 +6,6 @@
 
 <div class="row">
   <div class="nine columns" role="content">
-
     <table class="twelve responsive">
       <thead>
         <tr>
@@ -20,7 +19,6 @@
           <th></th>
         </tr>
       </thead>
-
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.position %></td>
@@ -42,16 +40,22 @@
           <td><span class="alert label">Not Available</span></td>
         <% end %>
           
-        <%= form_for @bid, url: bids_path do |f| %>
-        <td>
-          <%= f.text_field :price, id: "bid_price_#{team.id}" %>
-          <%= f.hidden_field :team_id, value: team.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-        </td>
-        <td>
-          <%= f.submit "Make Bid", class: 'button' %>
-        </td>
+        <% if team.can_make_bid?(current_user) %>
+          <% unless team.match_right_now? %>
+            <%= form_for @bid, url: bids_path do |f| %>
+            <td>
+              <%= f.text_field :price, class: team.name.parameterize, readonly: true %>
+              <div class="slider" id="<%= team.name.parameterize %>" data-team="<%= team.name.parameterize %>" data-initial-value="<%= number_with_precision(team.min_bid_value, precision: 2) %>" data-max-bid-value="<%= number_with_precision(team.max_bid_value, precision: 2) %>" ></div>
+              <%= f.hidden_field :team_id, value: team.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+            </td>
+            <td>
+              <%= f.submit "Make Bid", class: 'button' %>
+            </td>
+            <% end %>
+          <% end %>
         <% end %>
+
       </tr>
     <% end %>
     </table>

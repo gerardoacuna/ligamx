@@ -1,0 +1,7 @@
+El usuario no puede hacer bid si esta sobrepasa su efectivo.
+El usuario ve un decremento en su efectivo al momento de hacer el bid.
+//El usuario puede cancelar en cualquier momento su bid.
+El usuario puede ver el máx bid hasta el momento.
+El usuario tiene un límite de 15% sobre el valor actual.
+El usuario no puede hacer una oferta menor al valor actual.
+//El usuario solo puede hacer oferta si el equipo no cuenta con acciones disponibles.

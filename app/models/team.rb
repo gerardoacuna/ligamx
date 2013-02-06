@@ -23,6 +23,10 @@ class Team < ActiveRecord::Base
 
   accepts_nested_attributes_for :matches, allow_destroy: true
 
+  def can_make_bid?(user)
+    stocks_available == 0
+  end
+
   def can_buy_stock?(user)
     user.available_credit >= current_value && stocks_available > 0 && user_stock_quantity(user).first.to_i <= 19
   end
@@ -42,6 +46,14 @@ class Team < ActiveRecord::Base
     return closest_date
   end
 
+  def max_bid_value
+    current_value * 1.1
+  end
+
+  def min_bid_value
+    current_value + 0.1
+  end
+
   def end_match_date
     closest_match_date + 2.5.hours
   end
@@ -51,7 +63,7 @@ class Team < ActiveRecord::Base
   end
 
   def initial_stocks_available
-    return 110
+    return 2
   end
 
   def initial_stock_value

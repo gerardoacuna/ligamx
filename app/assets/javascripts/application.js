@@ -18,4 +18,5 @@
 //= require morris
 //= require foundation
 //= require jquery_nested_form
+//= require jquery-ui
 //= require_tree .

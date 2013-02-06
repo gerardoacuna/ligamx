@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
   end
 
   def total_portfolio_value
-    current_portfolio_value + available_credit
+    current_portfolio_value + available_credit + credit_spent_on_bids
   end
 
   def transaction_gains

@@ -51,7 +51,7 @@ class Team < ActiveRecord::Base
   end
 
   def min_bid_value
-    current_value + 0.1
+    current_value + 0.01
   end
 
   def end_match_date

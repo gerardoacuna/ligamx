@@ -24,7 +24,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :matches, allow_destroy: true
 
   def can_make_bid?(user)
-    stocks_available == 0 && user.available_credit >= current_value
+    stocks_available == 0 && user.available_credit >= current_value && user_stock_quantity(user).first.to_i <= 19
   end
 
   def can_buy_stock?(user)
@@ -78,6 +78,10 @@ class Team < ActiveRecord::Base
     initial_stocks_available - total_stocks_sold
   end
 
+  def weekly_change
+    current_value - last_week_value
+  end
+
   def current_value
   	current_value = initial_stock_value
     slope = 0.588235294117647
@@ -94,6 +98,27 @@ class Team < ActiveRecord::Base
   		end
   	end
   	current_value
+  end
+
+  def last_week_value
+    last_week_value = initial_stock_value
+    slope = 0.588235294117647
+    match_number = matches.length
+    matches.each_with_index do |match, index|
+      if index + 1 == match_number
+        position = 9.5 + (match.position.to_i - match.rival_position.to_i) * 0.5
+        if match.result == "win"
+          last_week_value *= 1 + (position * slope + 4.41176470588235) * 0.01
+        elsif match.result == "lose"
+          last_week_value *= 1 + (position * slope - 15.5882352941176) * 0.01
+        elsif match.result == "tie"
+          last_week_value *= 1 + (position * 0.235294117647059 - 1.23529411764706) * 0.01
+        else
+          last_week_value
+        end
+      end
+    end
+    last_week_value
   end
 
 end

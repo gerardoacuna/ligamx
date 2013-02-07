@@ -18,6 +18,7 @@
           <th>Bids</th>
           <th></th>
           <th>Max Bid</th>
+          <th></th>
         </tr>
       </thead>
     <% @teams.each do |team| %>
@@ -59,7 +60,7 @@
             <% end %>
           <% end %>
         <% end %>
-
+        <td class="<%= gain_loss(team.weekly_change) %>" ><%= number_to_currency(team.weekly_change) %></td>
       </tr>
     <% end %>
     </table>

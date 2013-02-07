@@ -24,7 +24,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :matches, allow_destroy: true
 
   def can_make_bid?(user)
-    stocks_available == 0
+    stocks_available == 0 && user.available_credit >= current_value
   end
 
   def can_buy_stock?(user)

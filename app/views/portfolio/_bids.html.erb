@@ -16,7 +16,7 @@
 		    <td><div class="icon <%= bid.team.name.parameterize %>"></div></td>
 		    <td><%= number_to_currency(bid.team.current_value) %></td>
 				<td><%= number_to_currency(bid.price) %></td>
-				<td><%= link_to "Cancel", bid_path(bid, "bid[cancelled]" => true), method: :put, confirm: "Are you sure?", class: 'button' %></td>
+				<td><%= link_to "Cancel", bid_path(bid, "bid[cancelled]" => true), method: :put, confirm: "Are you sure?", class: 'button delete-bid' %></td>
 			</tr>
 		<% end %>
 	</tbody>

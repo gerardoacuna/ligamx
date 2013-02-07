@@ -33,9 +33,11 @@
 					</div>
 				</td>
 				<td>
+					<div class="sell-bid">
 					<%= button_to "Sell for #{number_to_currency(stock.team.bids.first.try(:price))}",
-								accept_bid_transactions_path(stock_id: stock), class: 'button', disable_with: 
+								accept_bid_transactions_path(stock_id: stock), class: 'button', form: { "data-team" => stock.team.name }, disable_with: 
 								'Selling...' unless stock.team.match_right_now? || stock.team.bids.first.nil? %>
+					</div>
 				</td>
 			</tr>
 		<% end %>

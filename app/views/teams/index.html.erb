@@ -43,7 +43,7 @@
           
         <% if team.can_make_bid?(current_user) %>
           <% unless team.match_right_now? %>
-            <%= form_for @bid, url: bids_path do |f| %>
+            <%= form_for @bid, url: bids_path, class: 'make-bid' do |f| %>
             <td>
               <%= f.text_field :price, class: team.name.parameterize, readonly: true %>
               <div class="slider" id="<%= team.name.parameterize %>" data-team="<%= team.name.parameterize %>" data-initial-value="<%= number_with_precision(team.min_bid_value, precision: 2) %>" data-max-bid-value="<%= number_with_precision(team.max_bid_value, precision: 2) %>" ></div>

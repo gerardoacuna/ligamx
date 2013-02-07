@@ -19,11 +19,11 @@
           <th>Name</th>
           <th>Available</th>
           <th>Current Value</th>
+          <th>Weekly Change</th>
           <th></th>
           <th>Bids</th>
           <th></th>
           <th>Max Bid</th>
-          <th>Weekly Change</th>
         </tr>
       </thead>
     <% @teams.each do |team| %>
@@ -33,6 +33,7 @@
         <td><%= link_to team.name, team %></td>
         <td><%= team.stocks_available %></td>
         <td><%= number_to_currency(team.current_value) %></td>
+        <td class="<%= gain_loss(team.weekly_change) %>" ><%= number_to_currency(team.weekly_change) %></td>
         <% if team.can_buy_stock?(current_user) || team.match_right_now? %>
           <% unless team.match_right_now? %>
             <td>
@@ -46,7 +47,6 @@
         <% else %>
           <td><span class="alert label">Not Available</span></td>
         <% end %>
-          
         <% if team.can_make_bid?(current_user) %>
           <% unless team.match_right_now? %>
             <%= form_for @bid, url: bids_path, class: 'make-bid' do |f| %>
@@ -65,7 +65,6 @@
             <% end %>
           <% end %>
         <% end %>
-        <td class="<%= gain_loss(team.weekly_change) %>" ><%= number_to_currency(team.weekly_change) %></td>
       </tr>
     <% end %>
     </table>

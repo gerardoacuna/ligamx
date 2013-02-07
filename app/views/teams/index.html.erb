@@ -52,6 +52,9 @@
             <td>
               <%= f.submit "Make Bid", class: 'button' %>
             </td>
+            <td>
+              <%= number_to_currency(stock.team.bids.first.try(:price)) %>
+            </td>
             <% end %>
           <% end %>
         <% end %>
